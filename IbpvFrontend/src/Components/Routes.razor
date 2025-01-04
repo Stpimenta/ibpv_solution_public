@@ -1,0 +1,17 @@
+﻿@using Blazorise
+@using Microsoft.AspNetCore.Components.Authorization
+<CascadingAuthenticationState>
+        <Router AppAssembly="typeof(Program).Assembly">
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
+                    <NotAuthorized>
+                        <h1>Sorry, you're not authorized to view this page.</h1>
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+            </Found>
+            <NotFound>
+                <h1>Sorry, there's nothing at this address.</h1>
+            </NotFound>
+        </Router>
+        <MessageProvider/>
+</CascadingAuthenticationState>

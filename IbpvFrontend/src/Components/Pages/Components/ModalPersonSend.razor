@@ -1,0 +1,18 @@
+<Modal @ref="modalRef" Closing="@OnModalClosing">
+    <ModalContent Centered>
+        <ModalHeader>
+            <ModalTitle Color="Color.Danger">Alerta</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
+            você esta enviando um gasto sem imagem anexada, confirme que está ciente disso.
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Danger" Clicked="@CloseModalAndSendGasto">Adicionar mesmo assim</Button>
+            <Button Color="Color.Primary" Clicked="@CloseModal">Anexar Imagem</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+@code {
+    
+}

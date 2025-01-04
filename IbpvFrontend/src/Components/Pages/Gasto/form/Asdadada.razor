@@ -1,0 +1,30 @@
+@using System.Globalization
+@using Blazorise
+
+
+<EditForm Model="formValues"  class="w-100">
+    <DataAnnotationsValidator />
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="form-group col-md-6">
+            <label for="descricao">Descrição</label>
+            <InputText @bind-Value="formValues.Descricao" type="text" class="form-control" id="inputAddress" placeholder="Descricao"/>
+            <ValidationMessage For="@(() => formValues.Descricao)" />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center alinhamento-center">
+        <div class="form-group col-md-6">
+            <label>Valor</label>
+            <NumericPicker  TValue="decimal?" CurrencySymbol="R$" Placeholder="Valor" />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary mt-1">Enviar</button>
+    </div>
+</EditForm>
+
+@code {
+    //model para fazer post na api
+    private DtoGastoPost formValues = new ();
+    
+}

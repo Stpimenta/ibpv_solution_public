@@ -1,0 +1,31 @@
+﻿@using Microsoft.FluentUI.AspNetCore.Components
+@rendermode InteractiveServer
+
+<FluentNavMenu Class="bg-light h-100" @bind-Expanded=MenuExpanded Title="Databound demo" Style="max-width: 300px">
+    <div style="height: 90%">
+        <FluentNavGroup Id="Group1" Title="Item 1" @bind-Expanded=Item1Expanded Icon="@(new Icons.Regular.Size24.LeafOne())">
+            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())">Item 1.1</FluentNavLink>
+            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafTwo())">Item 1.2</FluentNavLink>
+        </FluentNavGroup>
+        <FluentNavGroup Id="Group2" Title="Item 2" @bind-Expanded=Item2Expanded Icon="@(new Icons.Regular.Size24.LeafTwo())">
+            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())">Item 2.1</FluentNavLink>
+            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafTwo())">Item 2.2</FluentNavLink>
+        </FluentNavGroup>
+    </div>
+    <div class="bg-black d-flex justify-content-center">
+        <button @onclick="MenuExpandedclick">dasdasasda</button>
+    </div>
+</FluentNavMenu>
+    
+
+
+@code {
+    bool MenuExpanded = true;
+    bool Item1Expanded = true;
+    bool Item2Expanded = true;
+
+    private void MenuExpandedclick()
+    {
+        MenuExpanded = !MenuExpanded;
+    }
+}

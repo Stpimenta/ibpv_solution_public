@@ -1,0 +1,31 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+<p>Click this button to open a Menu.</p>
+<FluentButton  Class="bg-black" id="btnOpen1" Appearance="Appearance.Accent" @onclick="@(() => open = !open)">
+    Open menu
+</FluentButton>
+
+<FluentMenu Anchor="btnOpen1" @bind-Open="open"  VerticalThreshold="170">
+    <FluentMenuItem>
+        <span slot="start"><FluentIcon Value="@(new Icons.Regular.Size24.ClipboardPaste())" Color="Color.Neutral" Slot="start" /></span>
+        Menu item 4 with Icon
+    </FluentMenuItem>
+    <FluentMenuItem>
+        <span slot="start"><FluentIcon Value="@(new Icons.Regular.Size24.ClipboardPaste())" Color="Color.Neutral" Slot="start" /></span>
+        Menu item 4 with Icon
+    </FluentMenuItem>
+    <FluentMenuItem>
+        <span slot="start"><FluentIcon Value="@(new Icons.Regular.Size24.ClipboardPaste())" Color="Color.Neutral" Slot="start" /></span>
+        Menu item 4 with Icon
+    </FluentMenuItem>
+    <FluentMenuItem>
+        <span slot="start"><FluentIcon Value="@(new Icons.Regular.Size24.ClipboardPaste())" Color="Color.Neutral" Slot="start" /></span>
+        Menu item 4 with Icon
+    </FluentMenuItem>
+</FluentMenu>
+
+
+
+@code {
+bool open = false;
+
+}

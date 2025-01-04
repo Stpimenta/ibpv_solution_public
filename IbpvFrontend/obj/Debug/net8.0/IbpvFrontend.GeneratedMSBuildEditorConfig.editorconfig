@@ -1,0 +1,167 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = IbpvFrontend
+build_property.RootNamespace = IbpvFrontend
+build_property.ProjectDir = /home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvQXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Layout/EmptyLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvTGF5b3V0L0VtcHR5TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Layout/NavMenuContent.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvTGF5b3V0L05hdk1lbnVDb250ZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Layout/UserOptionsMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvTGF5b3V0L1VzZXJPcHRpb25zTWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Caixa/AddCaixa.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ2FpeGEvQWRkQ2FpeGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Caixa/Caixa.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ2FpeGEvQ2FpeGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Caixa/components/CardInfoCaixa.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ2FpeGEvY29tcG9uZW50cy9DYXJkSW5mb0NhaXhhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Caixa/form/FormAddCaixa.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ2FpeGEvZm9ybS9Gb3JtQWRkQ2FpeGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/Asdada.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9Bc2RhZGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/CardInfoGasto.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9DYXJkSW5mb0dhc3RvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/CardInfoMembro.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9DYXJkSW5mb01lbWJyby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/InputValueMoney.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9JbnB1dFZhbHVlTW9uZXkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/SearchContribuicaoAndGasto.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9TZWFyY2hDb250cmlidWljYW9BbmRHYXN0by5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/UploadInput.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9VcGxvYWRJbnB1dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Components/UploadInputv2.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29tcG9uZW50cy9VcGxvYWRJbnB1dHYyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Contribuicao/AddContribuicao.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29udHJpYnVpY2FvL0FkZENvbnRyaWJ1aWNhby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Contribuicao/components/CardInfoContribuicao.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29udHJpYnVpY2FvL2NvbXBvbmVudHMvQ2FyZEluZm9Db250cmlidWljYW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Contribuicao/components/MembroInfinityScroll.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29udHJpYnVpY2FvL2NvbXBvbmVudHMvTWVtYnJvSW5maW5pdHlTY3JvbGwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Contribuicao/Contribuicao.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29udHJpYnVpY2FvL0NvbnRyaWJ1aWNhby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Contribuicao/form/ContribuicaoForm.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvQ29udHJpYnVpY2FvL2Zvcm0vQ29udHJpYnVpY2FvRm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvRXJyb3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Gasto/AddGasto.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvR2FzdG8vQWRkR2FzdG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Gasto/Gasto.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvR2FzdG8vR2FzdG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/home/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvaG9tZS9Ib21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Login/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTG9naW4vTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/AddMembro.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL0FkZE1lbWJyby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/form/FormAddMembroAdm.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL2Zvcm0vRm9ybUFkZE1lbWJyb0FkbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/form/Step/FormStep1.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL2Zvcm0vU3RlcC9Gb3JtU3RlcDEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/form/Step/FormStep2.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL2Zvcm0vU3RlcC9Gb3JtU3RlcDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/form/Step/FormStep3.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL2Zvcm0vU3RlcC9Gb3JtU3RlcDMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/form/Step/FormStep4.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL2Zvcm0vU3RlcC9Gb3JtU3RlcDQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Membro/Membro.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvTWVtYnJvL01lbWJyby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUm91dGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvTGF5b3V0L01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-pjl4bym01d
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Gasto/form/FormAddGasto.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvR2FzdG8vZm9ybS9Gb3JtQWRkR2FzdG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-v7vwd7d6fq
+
+[/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/src/Components/Pages/Relatorio/Relatorios.razor]
+build_metadata.AdditionalFiles.TargetPath = c3JjL0NvbXBvbmVudHMvUGFnZXMvUmVsYXRvcmlvL1JlbGF0b3Jpb3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-j65nkyu82h

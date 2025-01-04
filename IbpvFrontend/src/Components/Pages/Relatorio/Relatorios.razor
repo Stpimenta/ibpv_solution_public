@@ -1,0 +1,293 @@
+@page "/relatorios"
+@using System.Globalization
+@using IbpvFrontend.Components.Pages.Components
+@using IbpvFrontend.src.Services.PdfRelatorioGenerator
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject IProviderCaixa providerCaixa
+@inject IProviderContribuicao providerContribuicao
+@inject IProviderGasto providerGasto
+@inject IJSRuntime JS
+@inject IWebHostEnvironment Env
+
+<div class="ml-lg-5  w-100 h-100 d-flex justify-content-center" style="overflow-y:auto">
+    <div class="d-flex flex-column col-md-12 col-lg-10 col-xl-8 d-flex">
+        <!--header-->
+        <div class="h-auto">
+            <FluentLabel Typo="Typography.EmailHeader"> Relatórios </FluentLabel>
+            <div class="content row d-flex justify-content-center">
+                <!--caixa-->
+                <div class="mb-2 col-lg12 col-xl-3">
+                    <FluentLabel Typo="Typography.Body"> Caixa </FluentLabel>
+                    <FluentSelect ValueChanged="@(e => idcaixa = int.Parse(e))" TOption="int">
+                        @if(caixas is not null)
+                        {
+                            foreach (var caixa in caixas)
+                            {
+                                <FluentOption Value=@caixa.Id.ToString()>@caixa.Nome</FluentOption>
+                            }
+                        }
+                    </FluentSelect>
+                </div>
+                <!--mes-->
+                <div class="mb-2 col-lg12 col-xl-3">
+                    <FluentLabel Typo="Typography.Body"> Mês </FluentLabel>
+                    <FluentSelect TOption="int" bind-Value="date" ValueChanged="@(e => date = e)">
+                        <FluentIcon Value="@(new Icons.Regular.Size16.Calendar())" Color="@Color.Neutral" Slot="indicator"/>
+                        <FluentOption Value="1">Janeiro</FluentOption>
+                        <FluentOption Value="2">Fevereiro</FluentOption>
+                        <FluentOption Value="3">Março</FluentOption>
+                        <FluentOption Value="4">Abril</FluentOption>
+                        <FluentOption Value="5">Maio</FluentOption>
+                        <FluentOption Value="6">Junho</FluentOption>
+                        <FluentOption Value="7">Julho</FluentOption>
+                        <FluentOption Value="8">Agosto</FluentOption>
+                        <FluentOption Value="9">Setembro</FluentOption>
+                        <FluentOption Value="10">Outubro</FluentOption>
+                        <FluentOption Value="11">Novembro</FluentOption>
+                        <FluentOption Value="12">Dezembro</FluentOption>
+                    </FluentSelect>
+                </div>
+               
+                <div class="mb-2 col-lg12 col-xl-3 d-flex align-items-end">
+                    <FluentButton OnClick="clickSearchButton" IconEnd="@(new Icons.Filled.Size20.Search())"
+                                  Appearance="Appearance.Accent">
+                    </FluentButton>
+                </div>
+            </div>
+        </div>
+        <!--header-->
+        
+        <!--body Cards-->
+        <div class="mt-4 col-md-12">
+            
+            @if (gastos is not null || contribuicoes is not null)
+            {
+                 if (contribuicoes is not null)
+                {
+                    totalEntradas = 0;
+                    <p class="col-md-6 m-0 fs-5 mb-3">Entradas</p>
+                    foreach (var contribuicao in contribuicoes)
+                    {
+                        totalEntradas += contribuicao.Valor;
+                        <div class="border-bottom-1 rounded-3 d-flex flex-row   align-items-center col-md-10 mb-3" style="height: 30px">
+                            <div class="col-6">
+                                <p class="m-0">@(contribuicao.TokenMembro is not null ? $"Token: {contribuicao.TokenMembro}" : $"{contribuicao.Caixa}")</p>
+                            </div>
+                            <div class="col-6 d-flex">
+                                <p class="m-0">Valor: @contribuicao.Valor.ToString("C2", new CultureInfo("pt-BR"))</p>
+                            </div>
+                        </div>
+                    }
+                    
+                    
+
+                    <div class="d-flex flex-row  border-bottom-1 rounded-3   align-items-center  col-md-10 col-12 mb-3" style="height: 30px; background-color: rgba(0, 123, 255, 0.4)">
+                        <p class="col-md-6 m-0 d-flex">Total de entradas:</p>
+                        <p class="col-md-6 m-0 ">Valor: @totalEntradas.ToString("C2", new CultureInfo("pt-BR"))</p>
+                    </div>
+                    
+                    <div class="d-flex flex-row border-bottom-1 rounded-3    align-items-center  col-md-10 col-12 mb-3" style="height: 30px">
+                        <p class="col-md-6 m-0 d-flex">Saldo para @(Months.Meses.Find( m => m.Item1 == int.Parse(date)).Item2):</p>
+                        <p class="col-md-6 m-0">Valor: @stateValorCaixainLastMonth.ToString("C2", new CultureInfo("pt-BR"))</p>
+                    </div>
+                    
+                    <div class="d-flex flex-row   align-items-center  col-md-10 col-12 mb-3" style="height: 30px">
+                        <p class="col-md-6 m-0 fs-5 d-flex justify-content-end">Saldo Total:</p>
+                        <p class="col-md-6 m-0 fs-5"> @saldoTotal.ToString("C2", new CultureInfo("pt-BR"))</p>
+                    </div>
+                }
+
+                if (gastos is not null)
+                {
+                    totalSaidas = 0;
+                    <div style="margin-top: 100px">
+                        <p class="col-md-6 m-0 fs-5 mb-3">Saidas</p>
+                        @foreach (var gasto in gastos)
+                        {
+                            totalSaidas += gasto.Valor;
+                            <div class="border-bottom-1 rounded-3 d-flex flex-row   align-items-center col-md-10 mb-3" style="height: 30px">
+                                <div class="col-6">
+                                    <p class="m-0">@gasto.Descricao</p>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <p class="m-0">Valor: @gasto.Valor.ToString("C2", new CultureInfo("pt-BR"))</p>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="d-flex flex-row  border-bottom-1 rounded-3   align-items-center  col-md-10 col-12 mb-3" style="height: 30px; background-color: rgba(0, 123, 255, 0.4)">
+                            <p class="col-md-6 m-0 d-flex ">Total de saidas:</p>
+                            <p class="col-md-6 m-0 ">Valor: @totalSaidas.ToString("C2", new CultureInfo("pt-BR"))</p>
+                        </div>
+
+
+                        <div class="d-flex flex-row   align-items-center  col-md-10 col-12 mb-3" style="height: 30px">
+                            <p class="col-md-6 m-0 fs-5 d-flex justify-content-end">Saldo para @(Months.Meses.Find(m => m.Item1 == int.Parse(date) + 1).Item2):</p>
+                            <p class="col-md-6 m-0 fs-5"> @stateValorcurrentMPesq.ToString("C2", new CultureInfo("pt-BR"))</p>
+                        </div>
+
+                    </div>
+
+                }
+                
+                if (gastos.Count > 0 || contribuicoes.Count > 0)
+                {
+                    
+                    <div class="border-bottom-1  d-flex justify-content-end   align-items-center col-md-10 mb-3" style="height: 30px">
+                        <FluentButton OnClick="saveRelatoriosBtnClick" IconEnd="@(new Icons.Regular.Size20.Save())" Class=" mb-4 mt-4"
+                                      Appearance="Appearance.Accent">
+                            @("Baixar relatório")
+                        </FluentButton>
+                    </div>
+                }
+                else
+                {
+                    <p>nenhum item encontrado</p>
+                }
+                
+            }
+           
+
+           
+
+        </div>
+        <!--body Cards-->
+    </div>
+</div>
+@code 
+{
+    //variaveis
+    decimal totalSaidas;
+    decimal totalEntradas;
+    decimal stateValorcurrentMPesq;
+    decimal stateValorCaixainLastMonth;
+    decimal saldoTotal;
+    int idcaixa;
+    string date = "1";
+    
+    List<CaixaDTO>? caixas = null;
+    List<GastoPagDTO>? gastos = null;
+    List<ContribuicaoPagDTO>? contribuicoes = null;
+    
+    //buscar caixas durante a renderização
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            caixas = await providerCaixa.getCaixa();
+            if (caixas.FirstOrDefault().Id.HasValue)
+            {
+                idcaixa = caixas.FirstOrDefault().Id.Value;
+            }
+           
+            StateHasChanged();
+        }
+       
+    }
+    
+    //click shearch button
+    private async Task clickSearchButton()
+    {
+        gastos = null;
+        contribuicoes = null;
+        int dateInt = int.Parse(date);
+        DateTime firstDayofMonth = new DateTime(DateTime.Now.Year, dateInt, 1);
+        DateTime lastDayofMonth = firstDayofMonth.AddMonths(1).AddDays(-1);
+        
+        var gastosPagineted = await providerGasto.getPageGastos(pageNumber:1, pageQuantity:1000, initialDate: firstDayofMonth, finalDate: lastDayofMonth, idCaixa:idcaixa);
+        gastos = gastosPagineted.items;
+        
+        var contribuicaoPagineted = await providerContribuicao.getPageContribuicao(pageNumber:1, pageQuantity:1000, initialDate: firstDayofMonth, finalDate: lastDayofMonth, idCaixa:idcaixa);
+        contribuicoes = contribuicaoPagineted.items;
+        
+        //primeiro dias do mes seguinte para reconstituir caixas
+        DateTime firstDayofNextMonth = lastDayofMonth.AddDays(1);
+        DateTime todayNow = DateTime.UtcNow;
+        
+        var previousGasto = await providerGasto.getPageGastos(pageNumber:1, pageQuantity:1000, initialDate: firstDayofNextMonth, finalDate: todayNow, idCaixa:idcaixa);
+        var previousContribuicao = await providerContribuicao.getPageContribuicao(pageNumber:1, pageQuantity:1000, initialDate: firstDayofNextMonth, finalDate: todayNow, idCaixa:idcaixa);
+
+
+        decimal stategastoinSelectedMonth = 0;
+        decimal statecontribuicaoSelectedMonth = 0;
+        stateValorcurrentMPesq = 0;
+        stateValorCaixainLastMonth = 0;
+        saldoTotal = 0;
+        foreach (var gasto in previousGasto.items)
+        {
+            stategastoinSelectedMonth += gasto.Valor;
+        }
+        
+        foreach (var contribuicao in previousContribuicao.items)
+        {
+            statecontribuicaoSelectedMonth += contribuicao.Valor;
+        }
+        
+        StateHasChanged();
+        
+        var caixa = caixas.Find(c => c.Id == idcaixa);
+        stateValorcurrentMPesq = caixa.ValorTotal - (statecontribuicaoSelectedMonth - stategastoinSelectedMonth);
+        stateValorCaixainLastMonth = stateValorcurrentMPesq - (totalEntradas - totalSaidas);
+        saldoTotal = stateValorCaixainLastMonth + totalEntradas;
+        
+        
+      
+
+    }
+    
+    //busca o caixa pelo nome
+    private CaixaDTO? searchCaixabyId(string caixaNome)
+    {
+        if(caixas is not null)
+        {
+            var caixa = caixas.FirstOrDefault(c => c.Nome == caixaNome);
+            return caixa;
+        }
+
+        return null;
+    }
+    
+    //gera o pdf
+    private async Task saveRelatoriosBtnClick()
+    {
+        
+        int dateInt = int.Parse(date);
+        DateTime firstDayofMonth = new DateTime(DateTime.Now.Year, dateInt, 1);
+        DateTime lastDayofMonth = firstDayofMonth.AddMonths(1).AddDays(-1);
+        //primeiro dias do mes seguinte para reconstituir caixas
+        DateTime firstDayofNextMonth = lastDayofMonth.AddDays(1);
+        DateTime todayNow = DateTime.UtcNow;
+        
+        List<(string, decimal)> historicoCaixa = new List<(string, decimal)>();
+        foreach (var caixa in caixas)
+        {
+            if (caixa.Id != idcaixa)
+            {
+                var previousGasto = await providerGasto.getPageGastos(pageNumber:1, pageQuantity:1000, initialDate: firstDayofNextMonth, finalDate: todayNow, idCaixa:caixa.Id);
+                var previousContribuicao = await providerContribuicao.getPageContribuicao(pageNumber:1, pageQuantity:1000, initialDate: firstDayofNextMonth, finalDate: todayNow, idCaixa:caixa.Id);
+                decimal totalGastos = previousGasto.items.Sum(g => g.Valor);
+                decimal totalContribuicao = previousContribuicao.items.Sum(c => c.Valor);
+                decimal totalCaixaSelectedMonth = caixa.ValorTotal - ( totalContribuicao - totalGastos);
+                
+                historicoCaixa.Add(((string, decimal))(caixa.Nome,totalCaixaSelectedMonth));
+            }
+            else
+            {
+                historicoCaixa.Add(((string, decimal))(caixa.Nome,stateValorcurrentMPesq));
+            }
+        }
+        
+       var pdfDowload =  PdfRelatorio.GeneratePdfContribuicoes(Env,contribuicoes,gastos,totalEntradas,totalSaidas,stateValorcurrentMPesq, stateValorCaixainLastMonth,saldoTotal,int.Parse(date),historicoCaixa);
+      
+       //conversoes para chamar o Js
+       var fileData = pdfDowload.ToArray();
+       var base64 = Convert.ToBase64String(fileData);
+       
+       //dowload relatorios
+       await JS.InvokeVoidAsync("startDownload", base64, "Relatorio.pdf");
+
+
+
+    }
+ 
+}

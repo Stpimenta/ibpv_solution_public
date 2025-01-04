@@ -1,0 +1,33 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@rendermode InteractiveServer
+
+<FluentStack Orientation="Orientation.Horizontal">
+    <!-- Menu with sub-items and icons -->
+    @* <FluentNavMenu @bind-Expanded=MenuExpanded Title="Databound demo" Style="max-width: 350px"> *@
+    @*     <FluentNavGroup Id="Group1" Title="Item 1" @bind-Expanded=Item1Expanded Icon="@(new Icons.Regular.Size24.LeafOne())"> *@
+    @*         <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())">Item 1.1</FluentNavLink> *@
+    @*         <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafTwo())">Item 1.2</FluentNavLink> *@
+    @*     </FluentNavGroup> *@
+    @*     <FluentNavGroup Id="Group2" Title="Item 2" @bind-Expanded=Item2Expanded Icon="@(new Icons.Regular.Size24.LeafTwo())"> *@
+    @*         <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())">Item 2.1</FluentNavLink> *@
+    @*         <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafTwo())">Item 2.2</FluentNavLink> *@
+    @*     </FluentNavGroup> *@
+    @* </FluentNavMenu> *@
+    
+    <NavMenu/>
+    
+    <FluentStack Orientation="Orientation.Vertical">
+
+        @ChildContent
+        
+
+    </FluentStack>
+</FluentStack>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    bool MenuExpanded = false;
+    bool Item1Expanded = true;
+    bool Item2Expanded = true;
+}

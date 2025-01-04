@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/sergio/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/sergio/.nuget/packages/</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.9.1</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="/home/sergio/.nuget/packages/" />
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)sve.blazor.infinitescroll/1.0.0-alpha/buildTransitive/Sve.Blazor.InfiniteScroll.props" Condition="Exists('$(NuGetPackageRoot)sve.blazor.infinitescroll/1.0.0-alpha/buildTransitive/Sve.Blazor.InfiniteScroll.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.fluentui.aspnetcore.components/4.9.1/buildTransitive/Microsoft.FluentUI.AspNetCore.Components.props" Condition="Exists('$(NuGetPackageRoot)microsoft.fluentui.aspnetcore.components/4.9.1/buildTransitive/Microsoft.FluentUI.AspNetCore.Components.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise/1.5.2/buildTransitive/Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise/1.5.2/buildTransitive/Blazorise.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.icons.fontawesome/1.5.2/buildTransitive/Blazorise.Icons.FontAwesome.props" Condition="Exists('$(NuGetPackageRoot)blazorise.icons.fontawesome/1.5.2/buildTransitive/Blazorise.Icons.FontAwesome.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.bootstrap/1.5.2/buildTransitive/Blazorise.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap/1.5.2/buildTransitive/Blazorise.Bootstrap.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/home/sergio/.nuget/packages/awssdk.core/3.7.303.25</PkgAWSSDK_Core>
+    <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">/home/sergio/.nuget/packages/awssdk.s3/3.7.307.26</PkgAWSSDK_S3>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,141 @@
+@using System.Globalization
+@using Blazorise
+@using System.ComponentModel.DataAnnotations
+@using System.Text.RegularExpressions
+@using IbpvFrontend.src.Components.Pages.Membro.form.model
+@inject FormStateService FormState
+<EditForm Model="formValues" OnValidSubmit="@isvalid" class="w-100" @ref="@editform1">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label class="col-10 col-sm-2 col-form-label">Nome Completo</label>
+        <div class="col-sm-12">
+            <InputText @bind-Value="formValues.Nome" type="text" class="form-control"  placeholder=""/>
+            <ValidationMessage For="@(() => formValues.Nome)"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-10 col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-12">
+            <InputText @bind-Value="formValues.Email" type="text" class="form-control" placeholder="example@email.com"/>
+            <ValidationMessage For="@(() => formValues.Email)"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-10 col-sm-2 col-form-label">Senha</label>
+        <div class="col-sm-12">
+            <InputText @bind-Value="formValues.Senha" type="password" class="form-control"  placeholder=""/>
+            <ValidationMessage For="@(() => formValues.Senha)"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-10 col-form-label">Confirme sua senha</label>
+        <div class="col-sm-12">
+            <InputText @bind-Value="formValues.ConfirmarSenha" type="password" class="form-control" placeholder=""/>
+            <ValidationMessage For="@(() => formValues.ConfirmarSenha)"/>
+        </div>
+    </div>
+    
+    
+    <div class="d-flex justify-content-start flex-column">
+        <label class="col-form-label">
+            Numero de Telefone
+            <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+        </label>
+        <div class="form-group row">
+            <div class="col-3 col-sm-3 col-md-3" style="max-width: 100px">
+                <select @bind="formValues.Telefone_pais" class="form-control">
+                    <option value="+55">+55</option>
+                </select>
+            </div>
+            <div class="col-9 col-sm-6 col-md-5">
+                <div class="input-group">
+                    <InputText @bind-Value="formValues.TelefoneNumero" type="text" class="form-control" placeholder="(11) 99999-9999" @oninput="@((args) => FormatarTelefone(args.Value.ToString()))"/>
+                    <ValidationMessage For="@(() => formValues.TelefoneNumero)" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</EditForm>
+
+@code {
+    //aqui criamos uma instancia do modelo de step1
+    public ModelStep1 formValues { get; set; } = new();
+
+    private void FormatarTelefone(string novoValor)
+    {
+        if (novoValor is not null)
+        {
+            // Remove caracteres não numéricos do valor atual do campo
+            var numeroAtual = new string(novoValor.Where(char.IsDigit).ToArray());
+
+            // Aplica o formato (11) 99999-9999
+            if (numeroAtual.Length >= 2)
+            {
+                formValues.TelefoneNumero = $"({numeroAtual.Substring(0, 2)}) ";
+
+                if (numeroAtual.Length > 2)
+                {
+                    formValues.TelefoneNumero += $"{numeroAtual.Substring(2, Math.Min(5, numeroAtual.Length - 2))}";
+
+                    if (numeroAtual.Length > 7)
+                    {
+                        formValues.TelefoneNumero += $"-{numeroAtual.Substring(7, Math.Min(4, numeroAtual.Length - 7))}";
+                    }
+                }
+            }
+            else
+            {
+                formValues.TelefoneNumero = numeroAtual;
+            }
+        }
+        
+    }
+
+    //iniciar país e ddd
+    protected override void OnInitialized()
+    {   
+        formValues.Nome = FormState.usuarioPostForm.Nome;
+        formValues.Email = FormState.usuarioPostForm.Email;
+        formValues.Senha = FormState.usuarioPostForm.Senha;
+        formValues.ConfirmarSenha = FormState.usuarioPostForm.Senha;
+        if (FormState.usuarioPostForm.Telefone_pais is null)
+        {
+            formValues.Telefone_pais = "+55";
+        }
+        else
+        {
+            formValues.Telefone_pais = FormState.usuarioPostForm.Telefone_pais;
+        }
+        
+        FormatarTelefone(FormState.usuarioPostForm.TelefoneNumero);
+    }
+
+    //criamos um callback para quando for valido chamar
+    [Parameter]
+    public EventCallback<UsuarioPostDTO> formsubmit { get; set; }
+
+    //criamos uma função para o componente pai poder invocar o submit
+    public EditForm? editform1;
+
+    //por fim função para caso seja valido
+    public void isvalid()
+    {
+        if (formValues.TelefoneNumero is not null)
+        {
+            formValues.TelefoneNumero = Regex.Replace(formValues.TelefoneNumero, "[^0-9]", "");
+        }
+        // Remover pontos e traços antes de enviar ao banco de dados
+        
+        FormState.usuarioPostForm.Email = formValues.Email;
+        FormState.usuarioPostForm.Senha = formValues.Senha;
+        FormState.usuarioPostForm.Telefone_pais = formValues.Telefone_pais;
+        FormState.usuarioPostForm.TelefoneNumero = formValues.TelefoneNumero;
+        FormState.usuarioPostForm.Nome = formValues.Nome;
+       
+    }
+}   
+
+
+

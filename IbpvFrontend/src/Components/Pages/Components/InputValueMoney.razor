@@ -1,0 +1,81 @@
+@using System.Globalization
+
+<div>
+    <input @ref="inputElement"
+           @bind="displayValue"
+           @bind:event="oninput"
+           @onblur="OnBlur"
+           @onfocus="OnFocus"
+           type="text"
+           class="form-control" />z
+</div>
+
+@code {
+    private string displayValue;
+    private decimal decimalValue;
+
+    [Parameter]
+    public decimal Value
+    {
+        get => decimalValue;
+        set
+        {
+            if (decimalValue != value)
+            {
+                decimalValue = value;
+                displayValue = FormatCurrency(value);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<decimal> ValueChanged { get; set; }
+
+    private CultureInfo culture = new CultureInfo("pt-BR");
+
+    private ElementReference inputElement;
+
+    private void OnBlur(FocusEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(displayValue))
+        {
+            decimalValue = 0;
+            displayValue = FormatCurrency(decimalValue);
+            ValueChanged.InvokeAsync(decimalValue);
+            return;
+        }
+
+        // Tenta converter a entrada para decimal
+        if (decimal.TryParse(displayValue, NumberStyles.Currency, culture, out var result))
+        {
+            result = Math.Truncate(100 * result) / 100;
+            ValueChanged.InvokeAsync(result);
+        }
+
+        // Reformatar o valor de exibição
+        displayValue = FormatCurrency(Value);
+    }
+
+    private void OnFocus(FocusEventArgs e)
+    {
+        // Remove a formatação ao focar
+        displayValue = decimalValue.ToString(culture);
+    }
+
+    private string FormatCurrency(decimal value)
+    {
+        return value.ToString("C", culture);
+    }
+
+    public async Task OnInput(ChangeEventArgs e)
+    {
+        displayValue = e.Value?.ToString() ?? string.Empty;
+
+        // Tenta converter a entrada para decimal
+        if (decimal.TryParse(displayValue, NumberStyles.Currency, culture, out var result))
+        {
+            decimalValue = result;
+            await ValueChanged.InvokeAsync(result);
+        }
+    }
+}

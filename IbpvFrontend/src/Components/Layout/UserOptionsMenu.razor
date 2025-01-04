@@ -1,0 +1,23 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject ILoginService login
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<FluentButton Class="bg-transparent border-0" id="btnOpen1"  @onclick="@(() => _open = !_open)">
+    <FluentIcon Value="@(new Icons.Regular.Size28.Person())" />
+</FluentButton>
+<FluentMenu Anchor="btnOpen1" @bind-Open="_open" VerticalThreshold="170" Style="z-index: 20">
+    <FluentMenuItem OnClick="exit">
+        <FluentIcon Value="@(new Icons.Regular.Size20.ArrowExit())" /> sair
+    </FluentMenuItem>
+</FluentMenu>
+
+@code{
+    bool _open;
+
+    private async Task exit()
+    {
+        await login.exitSesion();
+        Navigation.NavigateTo("/", forceLoad:true);
+    }
+}

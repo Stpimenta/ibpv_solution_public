@@ -1,0 +1,120 @@
+ @using System.Globalization
+@using Blazorise
+@using IbpvDtos.Enums
+@using IbpvFrontend.src.Components.Pages.Membro.form.model;
+@using IbpvFrontend.src.Components.Pages.Membro.form.Step
+@inject IProviderMembro providerMembro;
+@inject FormStateService FormState
+
+<h1 class="h4">Passo @currentPage</h1>
+@if (currentPage == 1)
+{
+    <FormStep1 @ref="step1"/>
+}
+
+@if (currentPage == 2)
+{
+    <FormStep2 @ref="step2"/>
+}
+
+ @if (currentPage == 3)
+{
+    <FormStep3 @ref="step3"/>
+}
+
+@if (currentPage == 4)
+{
+    <FormStep4 @ref="step4"/>
+}
+
+
+<div class="d-flex align-items-center justify-content-end">
+    @if(currentPage == 1)
+    {
+        <button type="button" class=" mb-3 mr-2  btn btn-primary disabled ">voltar</button>
+    }
+    else
+    {
+        <button type="button"  @onclick="previousPage" class=" mb-3 mr-2 btn btn-primary">voltar</button>
+    }
+
+
+    @if(currentPage != 4)
+    {
+        <button type="button" @onclick="async ()=> await validation()" class=" mb-3 btn btn-primary"> proximo </button>
+    }
+    else
+    {
+        <button type="button" @onclick="async ()=> await validation()" class=" mb-3 btn btn-primary"> enviar </button>
+    }
+</div>
+
+@code {
+    //pagina atual
+    public int currentPage = 1;
+    
+    //função para passar para a pagina pai o click de enviar
+    [Parameter]
+    public EventCallback<UsuarioPostDTO> sendOnButtonClick {get; set; }
+
+    //pegar a referencia dos formularios para navegar e salvar os furmularios
+    private FormStep1 step1 = new FormStep1();
+    private FormStep2 step2 = new FormStep2();
+    private FormStep3 step3 = new FormStep3();
+    private FormStep4 step4 = new FormStep4();
+
+    //chama a funçao que salva os dados e navega
+    private async Task validation()
+    {
+      
+        if (currentPage == 1 && step1!.editform1!.EditContext!.Validate())
+        {
+            step1.isvalid();
+            currentPage ++;
+        }
+
+        else if (currentPage == 2 && step2!.editform2!.EditContext!.Validate())
+        {
+            step2.isvalid();
+            currentPage ++;
+        }
+
+        else if (currentPage == 3 && step3!.editform3!.EditContext!.Validate())
+        {
+            step3.isvalid();
+            currentPage ++;
+        }
+
+        else if (currentPage == 4 && step3!.editform3!.EditContext!.Validate())
+        {
+             step4.isvalid();
+             FormState.usuarioPostForm.status = EnumStatusMembro.ativo;
+             await sendOnButtonClick.InvokeAsync(FormState.usuarioPostForm);
+
+        }
+
+    }
+
+    //voltar uma pagina
+    private void previousPage()
+    {
+        if (currentPage == 2)
+        {
+            step2.isvalid();
+            currentPage --;
+        }
+
+        else if (currentPage == 3)
+        {
+            step3.isvalid();
+            currentPage --;
+        }
+
+        else if (currentPage == 4)
+        {
+            step4.isvalid();
+            currentPage --;
+        }
+    }
+}
+    

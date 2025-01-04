@@ -1,0 +1,246 @@
+﻿@page "/membro"
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject IProviderMembro providerMembro
+@using Blazorise;
+@using Microsoft.IdentityModel.Tokens
+
+<PageTitle>Counter</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <body class="w-100 p-3" style="overflow-y: auto; height: calc(100vh - 55px);">
+            <div>
+                <div class="d-flex flex-column justify-content-center mb-3">
+                    <div class=" d-flex container-fluid mt-2 justify-content-center" style="background-color: transparent">
+                        <form class="d-flex col-md-6 justify-content-between">
+                            <input class="form-control" type="search" @bind="@searchInput" placeholder="Search" aria-label="Search">
+                            <button type="button" @onclick="searchFunction" class="btn btn btn-outline-primary">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form> 
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center col-md-12 " style="background-color:transparent;">
+                    <div class="d-flex col-md-6 flex-column" style="background-color: transparent;">
+                        @if(!usuarios.IsNullOrEmpty())
+                        {
+                            @foreach (var usuario in usuarios)
+                            {  <div class="mb-3"s>
+                                    <CardInfoMembro parametros="usuario" onDelete="(()=>deleteUsuariomodal(usuario.Id))"/>
+                                </div>
+                            }
+                        }
+
+                        else if(usuarios is  null)
+                        {
+                             <p>BuscandoMembros...</p>
+                        }
+
+                        else
+                        {   
+                            <div class="vh-100">
+                                <p>Nenhum item encontrado ...</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+                @if(usuarios is not null && usuarios.Count > 0)
+                {  
+                    <div class="h-100 d-flex  justify-content-center">
+                        <Pagination>
+                            <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                                <PaginationLink>
+                                    <span aria-hidden="true">«</span>
+                                </PaginationLink>
+                            </PaginationItem>
+                        @{
+                                //pega o maior numero entre 1, e o calculo lembrar que divide primeiro kkk
+                                int startPage = Math.Max(1, int.Parse(currentPage) - pagesLimitnavbar / 2);
+                                //pega o menor numero
+                                int endPage = Math.Min(startPage + pagesLimitnavbar- 1, pagesTotal);
+
+                                for (int i = startPage; i <= endPage; i++)
+                                {
+                                    var pageNumberAsString = i.ToString();
+                                    <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                        <PaginationLink Page="@pageNumberAsString" Clicked="SetActive">
+                                            @pageNumberAsString
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                }
+
+                                if (endPage < pagesTotal)
+                                {
+                                    <PaginationItem>
+                                        <PaginationLink>
+                                            ...
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                }
+                            }
+                            <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                                <PaginationLink>
+                                    <span aria-hidden="true">»</span>
+                                </PaginationLink>
+                            </PaginationItem>
+                        </Pagination>
+                    </div>
+                }
+                <Modal @ref="modalRef">
+                    <ModalContent Centered>
+                        <ModalHeader>
+                            <ModalTitle>@modalTitle</ModalTitle>
+                        </ModalHeader>
+                        <ModalBody TextColor="colorText">
+                            @modalBody
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button Color="Color.Primary" Clicked="@CloseModal">voltar</Button>
+                            <Button Color="colorButton" Clicked="(()=>deleteUsuario())">Ok</Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
+                        
+            </div>
+
+        </body>
+    </Authorized>
+    <NotAuthorized>
+       @try{
+            Navigation.NavigateTo("/");
+       }catch{}
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private List<UsuarioPagDTO>?  usuarios;
+    private string? searchInput {get;set;}
+    private DateTime? initialDateInput {get;set;}
+    private DateTime? finalDateInput {get;set;}
+    private string currentPage = "1";
+    private int pageItems = 10;
+    private int pagesTotal = 0;
+    private int pagesLimitnavbar = 10;
+
+
+    //funcao para fazer pos renderizar
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {   
+        if (firstRender)
+        {
+            // Busca os gastos de forma assíncrona
+            PaginetedResultDTO<UsuarioPagDTO> membroResult = await providerMembro.getPageUsuario(int.Parse(currentPage), pageItems);
+            usuarios = membroResult.items;
+            pagesTotal = membroResult.pages;
+            // Força uma nova renderização
+            StateHasChanged();
+        }
+    }
+
+    //funçao de pesquisa
+    private async void searchFunction()
+    {
+        PaginetedResultDTO<UsuarioPagDTO> usuariosResult = await providerMembro.getPageUsuario(int.Parse(currentPage),pageItems,nome:searchInput);
+        usuarios = usuariosResult.items;
+        pagesTotal = usuariosResult.pages;
+        StateHasChanged();
+    }
+
+
+    //pagination code
+    private const string PREVIOUS = "previous";
+    private const string NEXT = "next";
+
+    private bool IsActive(string page)
+        => currentPage == page;
+
+    //desativa os botoes da ponta quanto ta no limite
+    private bool IsPageNavigationDisabled(string navigation )
+    {
+        if (navigation.Equals(PREVIOUS))
+        {
+            return currentPage.Equals("1");
+        }
+        else if (navigation.Equals(NEXT))
+        {
+            return currentPage.Equals(pageItems.ToString());
+        }
+        return false;
+    }
+
+    //volta
+    private void Previous()
+    {
+        var currentPageAsInt = int.Parse(currentPage);
+        if (currentPageAsInt > 1 )
+        {
+            currentPage = (currentPageAsInt - 1).ToString();
+        }
+         searchFunction();
+    }
+    //vai
+    private void Next()
+    {
+        var currentPageAsInt = int.Parse(currentPage);
+        if (currentPageAsInt < pagesTotal)
+        {
+            currentPage = (currentPageAsInt + 1).ToString();
+        }
+         searchFunction();
+    }
+
+    //click
+    private  void SetActive(string page)
+    {
+        currentPage = page;
+        searchFunction();
+    } 
+
+
+
+     private string? modalTitle {get;set;}
+     private string? modalBody {get;set;}
+     private Color colorButton = Color.Danger;
+     private TextColor colorText = TextColor.Danger;
+     private Modal? modalRef;
+
+    private Task ShowModal()
+    {
+        return modalRef!.Show();
+    }
+
+    private Task CloseModal()
+    {
+        return modalRef!.Hide(); 
+    }
+
+    int idDelete;
+    private  void deleteUsuariomodal(int id)
+    {
+        ShowModal();
+        idDelete = id;
+        modalTitle = "tem certeza que deseja excluir este membro?";
+        modalBody = "as alterações não podem ser desfeitas";
+        colorButton = Color.Danger;
+        colorText = TextColor.Dark;
+    } 
+
+    private  async void deleteUsuario()
+    {
+        try
+        {
+            await providerMembro.deleteUsuario(idDelete);
+            Navigation.NavigateTo(Navigation.Uri,true);
+        }
+        catch
+        {
+            await ShowModal();
+            modalTitle = "Erro ao deletar";
+            colorButton = Color.Danger;
+            colorText = TextColor.Dark;
+        }
+    } 
+
+}

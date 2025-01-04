@@ -1,0 +1,160 @@
+@using IbpvFrontend.src.Components.Pages.Membro.form.model
+@using System.Text.Json
+@using System.Text.RegularExpressions
+@inject FormStateService FormState
+
+<EditForm Model="formValues" OnValidSubmit="@isvalid" class="w-100" @ref="@editform2">
+    <DataAnnotationsValidator />
+    <div class="form-group row w-100 justify-content-between">
+        <div class="col-12 col-sm-12 col-xl-6">
+            <label class="col-form-label">Cep</label>
+            <InputText @bind-Value="formValues.CepEndereco" @oninput="@((args) => searchCep(args.Value.ToString()))" class="form-control" placeholder=""/>
+            <ValidationMessage For="@(() => formValues.CepEndereco)"/>
+        </div>
+
+        <div class="col-12 col-sm-12 col-xl-6">
+            <label class="col-form-label">Cidade</label>
+            <InputText @bind-Value="formValues.CidadeEndereco" type="text" class="form-control" placeholder=""/>
+            <ValidationMessage For="@(() => formValues.CidadeEndereco)"/>
+        </div>
+    </div>
+        
+    <div class="row w-100 form-group">
+        <div class="col-12 col-sm-12 col-xl-6">
+            <label class="col-form-label">Rua</label>
+            <InputText @bind-Value="formValues.RuaEdereco" type="text" class="form-control"placeholder=""/>
+            <ValidationMessage For="@(() => formValues.RuaEdereco)"/>
+        </div>
+        <div class="col-12 col-sm-12 col-xl-6">
+            <label class="col-form-label">Bairro</label>
+            <InputText @bind-Value="formValues.BairroEdereco" type="text" class="form-control" placeholder=""/>
+            <ValidationMessage For="@(() => formValues.BairroEdereco)"/>
+        </div>
+    </div>
+           
+    <div class="form-group row w-100">
+        <div class="col-12 col-sm-6 col-xl-6">
+            <label class="col-form-label">Complemento</label>
+            <InputText @bind-Value="formValues.ComplementoEndereco" type="text" class="form-control" placeholder=""/>
+            <ValidationMessage For="@(() => formValues.ComplementoEndereco)"/>
+        </div>
+        <div class="col-12 col-sm-3">
+            <label class="col-form-label">Estado</label>
+            <InputText @bind-Value="formValues.UfEndereco" type="text" class="form-control" placeholder="" style="max-width: 100px"/>
+            <ValidationMessage For="@(() => formValues.UfEndereco)" class="text-danger"/>
+        </div>
+    </div>
+
+    <div class="form-group row w-100 justify-content-between">
+        <div class="col-12 col-sm-5 col-xl-5">
+            <label class="col-form-label">Numero</label>
+            <InputText @bind-Value="formValues.NumeroEndereco" style="max-width: 150px" type="number" class="form-control" placeholder=""/>
+            <ValidationMessage For="@(() => formValues.NumeroEndereco)"/>
+        </div>
+    </div>
+       
+</EditForm>
+
+@code {
+    //aqui criamos uma instancia
+    public ModelStep2 formValues {get; set;} = new();
+    
+    //criar um httpclient para esta consulta
+    private static readonly HttpClient httpClient = new HttpClient();
+    
+    //mascara para cep
+    private string? cepMask(string? cep)
+    {
+        if (cep is null)
+        {
+            return null;
+        }
+        // Remove todos os caracteres não numéricos
+        cep = Regex.Replace(cep, "[^0-9]", "");
+
+        // Limitar o número de dígitos a 8 (formato padrão de CEP no Brasil)
+        if (cep.Length > 8)
+        {
+            cep = cep.Substring(0, 8);
+        }
+
+        // Aplicar a máscara
+        if (cep.Length > 5)
+        {
+            cep = cep.Insert(5, "-");
+        }
+
+        return cep;
+    }
+    //pesquisar o cep
+    private async Task searchCep(string cep)
+    {
+        formValues.CepEndereco = cepMask(cep);
+        
+        if (!string.IsNullOrWhiteSpace(cep) && cep.Length >= 8)
+        {
+            // Remove o hífen do CEP, se presente
+            cep = cep.Replace("-", "");
+            try
+            {
+                var response = await httpClient.GetAsync($"https://viacep.com.br/ws/{cep}/json/");
+                if (response.IsSuccessStatusCode)
+                {
+                    var stringResponse = await response.Content.ReadAsStringAsync();
+                    var endereco = JsonSerializer.Deserialize<ModelEndereçoViaCep>(stringResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    formValues.UfEndereco = endereco!.Uf;
+                    formValues.CidadeEndereco = endereco.Localidade;
+                    formValues.BairroEdereco = endereco.Bairro;
+                    formValues.RuaEdereco = endereco.Logradouro;
+                    formValues.CepEndereco = cep;
+
+                    StateHasChanged();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+    }
+
+    //criamos um callback para quando for valido chamar
+    [Parameter]
+    public EventCallback<UsuarioPostDTO> formsubmit { get; set; }
+
+    //criamos uma função para o componente pai poder invocar o submit
+    public EditForm? editform2;
+    
+    //iniciar país e ddd
+    protected override async Task OnInitializedAsync()
+    {   
+        formValues.UfEndereco = FormState.usuarioPostForm.UfEndereco;
+        formValues.CidadeEndereco = FormState.usuarioPostForm.CidadeEndereco;
+        formValues.BairroEdereco = FormState.usuarioPostForm.BairroEdereco;
+        formValues.RuaEdereco = FormState.usuarioPostForm.RuaEdereco;
+        formValues.NumeroEndereco = FormState.usuarioPostForm.NumeroEndereco;
+        formValues.ComplementoEndereco = FormState.usuarioPostForm.ComplementoEndereco;
+        formValues.CepEndereco = cepMask(FormState.usuarioPostForm.CepEndereco);
+    }
+
+    //por fim função para caso seja valido
+    public void isvalid()
+    {
+        if (formValues.CepEndereco is not null)
+        {
+            formValues.CepEndereco = Regex.Replace(formValues.CepEndereco, "[^0-9]", "");
+        }
+        
+        FormState.usuarioPostForm.UfEndereco = formValues.UfEndereco;
+        FormState.usuarioPostForm.CidadeEndereco = formValues.CidadeEndereco;
+        FormState.usuarioPostForm.BairroEdereco = formValues.BairroEdereco;
+        FormState.usuarioPostForm.RuaEdereco = formValues.RuaEdereco;
+        FormState.usuarioPostForm.NumeroEndereco = formValues.NumeroEndereco;
+        FormState.usuarioPostForm.ComplementoEndereco = formValues.ComplementoEndereco;
+        FormState.usuarioPostForm.CepEndereco = formValues.CepEndereco;
+    }
+}   
+
+
+

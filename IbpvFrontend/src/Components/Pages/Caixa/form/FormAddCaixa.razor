@@ -1,0 +1,46 @@
+@using System.Globalization
+@using Blazorise
+
+<EditForm Model="formValues" OnValidSubmit="@isvalid" class="w-100">
+    <DataAnnotationsValidator />
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="form-group col-md-6">
+            <label for="descricao">Descrição</label>
+            <InputText @bind-Value="formValues.Nome" type="text" class="form-control" id="inputAddress" placeholder="Descricao"/>
+            <ValidationMessage For="@(() => formValues.Nome)" />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center alinhamento-center">
+        <div class="form-group col-md-6">
+            <label>Valor</label>
+            <NumericPicker ValueChanged="onValueChanged" TValue="decimal?" CurrencySymbol="R$" Placeholder="Valor" />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary mt-1">Enviar</button>
+    </div>
+</EditForm>
+
+@code {
+    //model para fazer post na api
+    private CaixaDTO formValues = new CaixaDTO();
+
+    //func para manipular o valor do numeric picker
+    private void onValueChanged(decimal? value)
+    {
+        if (value.HasValue)
+        {
+            formValues.ValorTotal = value.Value;
+        }
+    }
+
+     //criamos um callback
+    [Parameter]
+    public EventCallback<CaixaDTO> formsubmit {get; set;}
+    //por fim função para caso seja valido
+    public async Task isvalid()
+    {
+        await formsubmit.InvokeAsync(formValues);
+    }
+}
+

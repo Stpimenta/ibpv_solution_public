@@ -1,0 +1,123 @@
+@using System.Globalization
+@using Blazorise
+@using System.ComponentModel.DataAnnotations
+@using IbpvDtos.Enums
+@using IbpvFrontend.src.Components.Pages.Membro.form.model
+@using System.Text.Json
+@using System.Diagnostics.CodeAnalysis
+@inject FormStateService FormState
+
+<EditForm Model="formValues" OnValidSubmit="@isvalid" class="w-100" @ref="@editform4">
+    <DataAnnotationsValidator />
+        <div class="form-group row">
+
+            <div class="col-lg-6 col-md-12 col-sm-12" >
+                <label for="inputPassword3" class="col-form-label">
+                    Pastor Batismo
+                    <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+                </label>
+                <InputText @bind-Value="formValues.pastorBatismo" type="text" class="form-control" id="inputPassword3" placeholder=""/>
+                <ValidationMessage For="@(() => formValues.pastorBatismo)"/>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12" >
+                <label class="col-form-label">
+                    Data de Batismo
+                    <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+                </label>
+                <div style="max-width: 300px">
+                    <DatePicker @bind-Date="formValues.dataBatismo" TValue="DateTime?"InputFormat="dd.MM.yyyy" DisplayFormat="dd.MM.yyyy"/>
+                </div>
+                <ValidationMessage For="@(() => formValues.dataBatismo)"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-6 col-md-12 col-sm-12" >
+                <label for="inputPassword3" class="col-form-label">
+                    Igreja Batismo
+                    <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+                </label>
+                <InputText @bind-Value="formValues.igrejaBatismo" type="text" class="form-control" id="inputPassword3" placeholder=""/>
+                <ValidationMessage For="@(() => formValues.igrejaBatismo)"/>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-end flex-column" >
+                <label for="inputEmail4">Permissão</label>
+                <select @bind="formValues.Rule" id="inputState" class="form-control" style="max-width: 300px">
+                    <option value="">selecione...</option>
+                    <option value="@EnumRule.root">root</option>
+                    <option value="@EnumRule.admin">admin</option>
+                    <option value="@EnumRule.tesouraria">tesouraria</option>
+                    <option value="@EnumRule.membro">membro</option>
+                </select>
+                <ValidationMessage For="@(() => formValues.Rule)"/>
+            </div>
+
+            <div class="col-sm-12 mt-2">
+                <label>
+                    Faça uplaod da foto do membro
+                    <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+                </label>
+                <Field>
+                    <FilePicker   @ref="filePicker"  Upload="OnFileUpload" ShowMode="FilePickerShowMode.Dropdown"/>
+                </Field>
+            </div>
+        </div>
+
+   
+</EditForm>
+
+@code {
+    //aqui criamos uma instancia
+    public ModelStep4 formValues {get; set;} = new();
+    
+    //iniciar país e ddd
+    protected override void OnInitialized()
+    {   
+        formValues.dataBatismo = FormState.usuarioPostForm.dataBatismo;
+        formValues.pastorBatismo = FormState.usuarioPostForm.pastorBatismo;
+        formValues.igrejaBatismo = FormState.usuarioPostForm.igrejaBatismo;
+        formValues.Rule = FormState.usuarioPostForm.Rule;
+    }
+
+    //criamos um callback para quando for valido chamar
+    [Parameter]
+    public EventCallback<UsuarioPostDTO> formsubmit { get; set; }
+
+    //criamos uma função para o componente pai poder invocar o submit
+    public EditForm? editform4;
+
+    //por fim função para caso seja valido
+    public void isvalid()
+    {
+        FormState.usuarioPostForm.dataBatismo = formValues.dataBatismo;
+        FormState.usuarioPostForm.pastorBatismo = formValues.pastorBatismo;
+        FormState.usuarioPostForm.igrejaBatismo = formValues.igrejaBatismo;
+        FormState.usuarioPostForm.Rule = formValues.Rule;
+    }
+    Blazorise.FilePicker? filePicker;
+    //fazer o upload
+    async Task OnFileUpload( FileUploadEventArgs e )
+    {
+        try
+        {
+            using ( MemoryStream result = new MemoryStream() )
+            {
+                
+            }
+        }
+        catch ( Exception exc )
+        {
+            
+
+        }
+        finally
+        {
+            this.StateHasChanged();
+        }
+    }
+}   
+
+
+

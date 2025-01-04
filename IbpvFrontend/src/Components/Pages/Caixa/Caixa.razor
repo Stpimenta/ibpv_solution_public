@@ -1,0 +1,132 @@
+﻿@page "/caixa"
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject IProviderCaixa providerCaixa
+@using Blazorise;
+@using IbpvFrontend.src.Components.Pages.Caixa.components
+@using Microsoft.IdentityModel.Tokens
+
+<PageTitle>Counter</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <body class="w-100 p-3 h-100" style="overflow-y: auto;">
+            <div>
+                <div class="d-flex justify-content-center align-items-center col-md-12 " style="background-color:transparent;">
+                    <div class="d-flex col-md-6 flex-column" style="background-color: transparent;">
+                        @if(!caixas.IsNullOrEmpty())
+                        {
+                            @foreach (var caixa in caixas!)
+                            {  <div class="mb-3"s>
+                                    <CardInfoCaixa parametros="caixa" onDelete="(()=>deleteCaixamodal(caixa.Id ?? 0))"/>
+                                </div>
+                            }
+                        }
+
+                        else if(caixas is  null)
+                        {
+                             <p>BuscandoCaixas...</p>
+                        }
+
+                        else
+                        {   
+                            <div class="vh-100">
+                                <p>Nenhum item encontrado ...</p>
+                            </div>
+                        }
+                    </div>
+                </div> 
+                <Modal @ref="modalRef">
+                    <ModalContent Centered>
+                        <ModalHeader>
+                            <ModalTitle>@modalTitle</ModalTitle>
+                        </ModalHeader>
+                        <ModalBody TextColor="colorText">
+                            @modalBody
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button Color="Color.Primary" Clicked="@CloseModal">voltar</Button>
+                            <Button Color="colorButton" Clicked="(()=>deleteCaixa())">Ok</Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
+                        
+            </div>
+        </body>
+    </Authorized>
+    <NotAuthorized>
+       @try{
+            Navigation.NavigateTo("/");
+       }catch{}
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private List<CaixaDTO>?  caixas;
+    //funcao para fazer pos renderizar
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {   
+        if (firstRender)
+        {
+            // Busca os gastos de forma assíncrona
+            try
+            {
+                caixas = await providerCaixa.getCaixa();
+            }
+            catch
+            {
+                caixas = await providerCaixa.getCaixa();
+            }
+           
+            
+            // Força uma nova renderização
+            StateHasChanged();
+        }
+    }
+
+
+
+
+     private string? modalTitle {get;set;}
+     private string? modalBody {get;set;}
+     private Color colorButton = Color.Danger;
+     private TextColor colorText = TextColor.Danger;
+     private Modal? modalRef;
+
+    private Task ShowModal()
+    {
+        return modalRef!.Show();
+    }
+
+    private Task CloseModal()
+    {
+        return modalRef!.Hide(); 
+    }
+
+    int idDelete;
+    private  void deleteCaixamodal(int id)
+    {
+        ShowModal();
+        idDelete = id;
+        modalTitle = "tem certeza que deseja excluir este Caixa?";
+        modalBody = "as alterações não podem ser desfeitas";
+        colorButton = Color.Danger;
+        colorText = TextColor.Dark;
+    } 
+
+    private  async void deleteCaixa()
+    {
+        try
+        {
+            await providerCaixa.deleteCaixa(idDelete);
+            Navigation.NavigateTo(Navigation.Uri,true);
+        }
+        catch
+        {
+            await ShowModal();
+            modalTitle = "Erro ao deletar";
+            colorButton = Color.Danger;
+            colorText = TextColor.Dark;
+        }
+    } 
+}

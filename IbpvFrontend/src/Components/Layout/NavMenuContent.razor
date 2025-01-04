@@ -1,0 +1,53 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject FormStateService FormState
+
+<FluentNavLink OnClick="smallMenu" Style="margin-top: 20px" Icon="@(new Icons.Regular.Size28.Home())" Href="home">Home</FluentNavLink>
+<hr>
+<FluentNavGroup Style="margin-top: 20px" Id="Group2" Title="Membro" @bind-Expanded=FormState.navStateService.membro @onclick="goMembro" Icon="@(new Icons.Regular.Size28.Person())">
+    <FluentNavLink OnClick="smallMenu" Href="membro">Ver Membros</FluentNavLink>
+    <FluentNavLink OnClick="smallMenu" Href="addmembro">Adicionar Membro</FluentNavLink>
+</FluentNavGroup>
+<FluentNavGroup Style="margin-top: 20px" Id="Group2" Title="Contribuição" @bind-Expanded=FormState.navStateService.contribuicao @onclick="goContribuicao" Icon="@(new Icons.Regular.Size28.ChannelAdd())">
+    <FluentNavLink OnClick="smallMenu" Href="contribuicao">Ver Contribuições</FluentNavLink>
+    <FluentNavLink OnClick="smallMenu" Href="addcontribuicao">Adicionar Contribuiçao</FluentNavLink>
+</FluentNavGroup>
+<FluentNavGroup Style="margin-top: 20px" Id="Group2" Title="Gasto" @bind-Expanded=FormState.navStateService.gasto @onclick="goGasto" Icon="@(new Icons.Regular.Size28.ChannelSubtract())">
+    <FluentNavLink OnClick="smallMenu" Href="gasto">Ver Gastos</FluentNavLink>
+    <FluentNavLink OnClick="smallMenu" Href="addgasto">Adicionar Gasto</FluentNavLink>
+</FluentNavGroup>
+<FluentNavGroup Style="margin-top: 20px" Id="Group2" Title="Caixa" @bind-Expanded=FormState.navStateService.caixa @onclick="@(goCaixa)" Icon="@(new Icons.Regular.Size28.BuildingBankLink())">
+    <FluentNavLink  OnClick="smallMenu" Href="caixa">Ver Caixas</FluentNavLink>
+    <FluentNavLink  OnClick="smallMenu" Href="addcaixa">Adicionar Caixa</FluentNavLink>
+</FluentNavGroup>
+<hr>
+<FluentNavLink Icon="@(new Icons.Regular.Size28.CalendarDataBar())" OnClick="smallMenu" Href="relatorios">Relatórios</FluentNavLink>
+@code {
+    
+    private void smallMenu()
+    {
+        FormState.navStateService.smallMenu = false;
+    }
+
+    private void goGasto()
+    {
+        FormState.navStateService.gasto = !FormState.navStateService.gasto;
+    }
+    
+    private void goContribuicao()
+    {
+        FormState.navStateService.contribuicao = !FormState.navStateService.contribuicao;
+    }
+    
+    
+    private void goCaixa()
+    {
+        FormState.navStateService.caixa = !FormState.navStateService.caixa;
+    }
+    
+    private void goMembro()
+    {
+        FormState.navStateService.membro = !FormState.navStateService.membro;
+    }
+
+  
+}

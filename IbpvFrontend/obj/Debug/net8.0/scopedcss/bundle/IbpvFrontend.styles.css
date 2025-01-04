@@ -1,0 +1,14 @@
+@import '_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css';
+
+/* _content/IbpvFrontend/src/Components/Layout/MainLayout.razor.rz.scp.css */
+.custom-nav-menu[b-pjl4bym01d] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 800px; /* largura desejada */
+    z-index: 0                                                                                                                                                                                                                                                                                                                                                                                                                          ; /* z-index alto para garantir que fique sobre o conteúdo */
+    overflow-y: auto; /* permite rolagem vertical se o menu for maior que a tela */
+}
+/* _content/IbpvFrontend/src/Components/Pages/Gasto/form/FormAddGasto.razor.rz.scp.css */
+/* _content/IbpvFrontend/src/Components/Pages/Relatorio/Relatorios.razor.rz.scp.css */

@@ -1,0 +1,112 @@
+﻿@page "/addmembro"
+@using Blazorise
+@using IbpvFrontend.src.Components.Pages.Membro.form
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject  IProviderMembro providerMembro
+@inject FormStateService FormState
+<PageTitle>Counter</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <body class="d-flex flex-column w-100 h-100 justify-content-center">
+        <div class="col-12 col-md-8 mx-auto">
+            <FormAddMembroAdm @ref="refForm" sendOnButtonClick="sendMembro"/>
+        </div>
+        <Modal @ref="modalRef">
+            <ModalContent Centered>
+                <ModalHeader>
+                    <ModalTitle>@modalTitle</ModalTitle>
+                </ModalHeader>
+                <ModalBody TextColor="colorText">
+                    @modalBody
+                </ModalBody>
+                <ModalFooter>
+                   @if(!modalError)
+                    {
+                        <Button Color="Color.Primary" Clicked="@addNovamente">Adicionar novamente</Button>
+                        <Button Color="colorButton" Clicked="@okModal">Ok</Button>
+                    }
+                   else
+                   {
+                       <Button Color="colorButton" Clicked="@funEerrorModal">Ok</Button>
+                   }
+                </ModalFooter>
+            </ModalContent>
+        </Modal>
+        </body>
+
+       
+    </Authorized>
+    <NotAuthorized>
+       @try
+       {
+           Navigation.NavigateTo("/");
+       }catch(Exception e) {Console.WriteLine(e);}
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    //controlar o formadm
+    private FormAddMembroAdm refForm { get; set; } = new();
+
+
+    //modal
+    private string? modalTitle {get;set;}
+    private string? modalBody {get;set;}
+    private Color colorButton = Color.Danger;
+    private TextColor colorText = TextColor.Danger;
+    private Modal? modalRef;
+    private bool modalError = false;
+
+    private Task ShowModal()
+    {
+        return modalRef!.Show();
+    }
+
+    private Task addNovamente()
+    {
+        FormState.usuarioPostForm = new UsuarioPostDTO();
+        refForm.currentPage = 1;
+        return modalRef!.Hide();
+    }
+
+    private Task okModal()
+    {
+        FormState.usuarioPostForm = new UsuarioPostDTO();
+        Navigation.NavigateTo("/membro");
+        return modalRef!.Hide();
+    }
+
+    private Task funEerrorModal()
+    {
+        return modalRef!.Hide();
+    }
+
+    //função para enviar o membro
+    private async Task sendMembro (UsuarioPostDTO user)
+    {
+        try
+        {
+            await providerMembro.AddUsuario(user);
+            modalTitle = "Sucesso";
+            modalBody = "Membro adcicionado com sucesso";
+            colorText = TextColor.Black50;
+            colorButton = Color.Success;
+            await ShowModal();
+        }
+
+        catch
+        {   
+            //tratar o erro retornando um modal
+            modalTitle = "Erro";
+            modalBody = "Contate o Desenvolvedor";
+            colorText = TextColor.Danger;
+            colorButton = Color.Danger;
+            modalError = true;
+            await ShowModal();
+        }
+        
+    }
+}
+

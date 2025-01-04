@@ -1,0 +1,225 @@
+@using Blazorise
+@using IbpvDtos.Enums
+@using IbpvFrontend.src.Components.Pages.Membro.form.model
+@using System.Text.RegularExpressions
+@inject FormStateService FormState
+
+<EditForm Model="formValues" OnValidSubmit="@isvalid" class="w-100" @ref="@editform3">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label class="col-form-label">Data de Nascimento</label>
+            <DatePicker @bind-Date="formValues.Data_nascimento" TValue="DateTime?" InputFormat="dd.MM.yyyy"
+                        DisplayFormat="dd.MM.yyyy"/>
+            <ValidationMessage For="@(() => formValues.Data_nascimento)"/>
+        </div>
+        
+        <div class="col-sm-6">
+            <label class="col-form-label">
+                Cpf
+                <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+            </label>
+            <InputText @bind-Value="formValues.Cpf"  @oninput="(args)=>oninputCpf(args.Value.ToString())" type="text" class="form-control"
+                       placeholder=""/>
+            <ValidationMessage For="@(() => formValues.Cpf)"/>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <div class="col-md-6 col-lg-6">
+            <label class="col-form-label">
+                Registro Geral (RG)
+                <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+            </label>
+            <InputText @bind-Value="formValues.RGnumero" @oninput="(args)=>oninputRg(args.Value.ToString()) " type="text" class="form-control" id="inputPassword3"
+                       placeholder=""/>
+            <ValidationMessage For="@(() => formValues.RGnumero)"/>
+        </div>
+
+        <div class="col-md-12 col-lg-3 align-items-end">
+            <label>Genêro</label>
+            <select @bind="formValues.genero" id="inputState" class="form-control">
+                <option value="">Selecione...</option>
+                <option value="@Enumgenero.masculino">masculino</option>
+                <option value="@Enumgenero.feminino">meminino</option>
+            </select>
+            <ValidationMessage For="@(() => formValues.genero)"/>
+        </div>
+
+        <div class="col-md-12 col-lg-3 align-items-end">
+            <label for="inputEmail4">Possui Filhos?</label>
+            <select @bind="formValues.filhos" id="inputState" class="form-control">
+                <option value="False">não</option>
+                <option value="True">sim</option>
+            </select>
+            <ValidationMessage For="@(() => formValues.filhos)"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-12 col-lg-6">
+            <label for="inputEmail3" class="col-form-label">Profissão</label>
+            <InputText @bind-Value="formValues.profissao" type="text" class="form-control" id="inputAddress"
+                       placeholder=""/>
+            <ValidationMessage For="@(() => formValues.profissao)"/>
+        </div>
+        
+        <div class="col-md-12 col-lg-6">
+            <label class="col-form-label">
+                Código de dizimista
+                <span class="font-italic" style="opacity: 0.6;">*opcional</span>
+            </label>
+            <InputText @bind-Value="formValues.TokenContribuicao" class="form-control"
+                       placeholder=""/>
+            <ValidationMessage For="@(() => formValues.TokenContribuicao)"/>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <div class="col-md-6">
+            <label for="inputEmail4">Estado Civil</label>
+            <select @bind="formValues.estadoCivil" id="inputState" class="form-control col-md-6">
+                <option value="">selecione...</option>
+                <option value="solteiro">solteiro (solteira)</option>
+                <option value="casado">casado (casada)</option>
+                <option value="divorciado">divorciado (divorciada)</option>
+                <option value="viuvo">viúvo (viúva)</option>
+                <option value="separado">separado (separada)</option>
+                <option value="uniao-estavel">união estável</option>
+            </select>
+            <ValidationMessage For="@(() => formValues.estadoCivil)"/>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    //aqui criamos uma instancia
+    public ModelStep3 formValues { get; set; } = new();
+    
+    //mascara para cpf
+    private string? cpfMask(string? input)
+    {
+        if (input is null)
+        {
+            return null;
+        }
+        // Remove todos os caracteres não numéricos
+        input = Regex.Replace(input, "[^0-9]", "");
+
+        // Limitar o número de dígitos a 11
+        if (input.Length > 11)
+        {
+            input = input.Substring(0, 11);
+        }
+
+        // Aplicar a máscara
+        if (input.Length > 9)
+        {
+            input = input.Insert(9, "-");
+        }
+        if (input.Length > 6)
+        {
+            input = input.Insert(6, ".");
+        }
+        if (input.Length > 3)
+        {
+            input = input.Insert(3, ".");
+        }
+
+        return input;
+    }
+    
+    //criar mascara para rg
+    private string? rgMask(string? input)
+    {
+        if (input is null)
+        {
+            return null;
+        }
+        // Remove todos os caracteres não numéricos
+        input = Regex.Replace(input, "[^0-9]", "");
+
+        // Limitar o número de dígitos a 9 (considerando o formato com 2 dígitos e 1 dígito)
+        if (input.Length > 9)
+        {
+            input = input.Substring(0, 9);
+        }
+
+        // Aplicar a máscara
+        if (input.Length > 8)
+        {
+            input = input.Insert(8, "-");
+        }
+        if (input.Length > 5)
+        {
+            input = input.Insert(5, ".");
+        }
+        if (input.Length > 2)
+        {
+            input = input.Insert(2, ".");
+        }
+
+        return input;
+    }
+
+    //iniciar país e ddd
+    protected override void OnInitialized()
+    {
+        formValues.Cpf = cpfMask(FormState.usuarioPostForm.Cpf);
+        formValues.RGnumero = rgMask(FormState.usuarioPostForm.RGnumero);
+        formValues.TokenContribuicao = FormState.usuarioPostForm.TokenContribuicao;
+        if (FormState.usuarioPostForm.Data_nascimento.HasValue)
+        {
+            formValues.Data_nascimento = FormState.usuarioPostForm.Data_nascimento;
+        }
+        formValues.filhos = FormState.usuarioPostForm.filhos.ToString();
+        formValues.profissao = FormState.usuarioPostForm.profissao;
+        formValues.estadoCivil = FormState.usuarioPostForm.estadoCivil;
+        formValues.genero = FormState.usuarioPostForm.genero;
+    }
+    
+    //oninput
+    private void oninputCpf(string input)
+    {
+        formValues.Cpf = cpfMask(input);
+    }
+
+    private void oninputRg(string input)
+    {
+        formValues.RGnumero = rgMask(input);
+    }
+
+    //criamos um callback para quando for valido chamar
+    [Parameter]
+    public EventCallback<UsuarioPostDTO> formsubmit { get; set; }
+
+    //criamos uma função para o componente pai poder invocar o submit
+    public EditForm? editform3;
+
+    //por fim função para caso seja valido
+    public void isvalid()
+    {
+        // Remover pontos e traços antes de enviar ao banco de dados
+        if (formValues.Cpf is not null)
+        {
+            formValues.Cpf = Regex.Replace(formValues.Cpf, "[^0-9]", "");
+        }
+        if (formValues.RGnumero is not null)
+        {
+            formValues.RGnumero = Regex.Replace(formValues.RGnumero, "[^0-9]", "");
+        }
+        
+        FormState.usuarioPostForm.Cpf = formValues.Cpf;
+        FormState.usuarioPostForm.TokenContribuicao = formValues.TokenContribuicao;
+        FormState.usuarioPostForm.RGnumero = formValues.RGnumero;
+        FormState.usuarioPostForm.Data_nascimento = formValues.Data_nascimento;
+        FormState.usuarioPostForm.filhos =  bool.Parse(formValues.filhos!);
+        FormState.usuarioPostForm.profissao = formValues.profissao;
+        FormState.usuarioPostForm.estadoCivil = formValues.estadoCivil;
+        FormState.usuarioPostForm.genero = formValues.genero;
+    }
+}
+
+
+
+

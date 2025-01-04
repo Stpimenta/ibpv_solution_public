@@ -1,0 +1,85 @@
+﻿@page "/addcaixa"
+@using IbpvDtos.Enums
+@using IbpvFrontend.src.Services
+@using Blazorise;
+@using System.IO
+@using IbpvFrontend.src.Components.Pages.Caixa.form
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject IProviderCaixa providerCaixa
+<PageTitle>Counter</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <body class="w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+            <div class="w-100 vh-100 d-flex flex-column align-items-center justify-content-center">
+                 <div class="d-flex col-md-6 justify-content-center flex-column">
+                    <FormAddCaixa formsubmit="sendCaixa"/>
+                </div>
+            </div>
+            <Modal @ref="modalRef">
+                <ModalContent Centered>
+                    <ModalHeader>
+                        <ModalTitle>@modalTitle</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody TextColor="colorText">
+                        @modalBody
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button Color="colorButton" Clicked="@CloseModal">Ok</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </body>
+    </Authorized>
+    <NotAuthorized>
+       @try{
+            Navigation.NavigateTo("/");
+       }catch{}
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    //modal
+    // reference to the modal component
+    private string? modalTitle {get;set;}
+    private string? modalBody {get;set;}
+    private Color colorButton = Color.Danger;
+    private TextColor colorText = TextColor.Danger;
+    private Modal? modalRef;
+
+    private Task ShowModal()
+    {
+        return modalRef!.Show();
+    }
+
+    private Task CloseModal()
+    {
+        Navigation.NavigateTo("/caixa");
+        return modalRef!.Hide(); 
+    }
+
+    private async void sendCaixa (CaixaDTO caixa)
+    {
+        try
+        {
+            await providerCaixa.addCaixa(caixa);
+            modalTitle = "Caixa Adicionado";
+            modalBody = "operação concluida com sucesso";
+            colorText = TextColor.Dark;
+            colorButton = Color.Success;
+            await ShowModal();
+        }
+        catch
+        {
+            modalTitle = "Erro";
+            modalBody = "Contate o desenvolvedor";
+            colorText = TextColor.Danger;
+            colorButton = Color.Success;
+            await ShowModal();
+        }
+    }
+       
+}
+
+

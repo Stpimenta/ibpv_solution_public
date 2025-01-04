@@ -1,0 +1,121 @@
+﻿@using Microsoft.FluentUI.AspNetCore.Components
+@using Orientation = Microsoft.FluentUI.AspNetCore.Components.Orientation
+@rendermode InteractiveServer
+@inherits LayoutComponentBase
+@inject  FormStateService FormState
+@* <div class="page"> *@
+@*     <div class="sidebar"> *@
+@*         <NavMenu /> *@
+@*     </div> *@
+@* *@
+@*     <main> *@
+@*         <article  style="background-color: rgb(236, 236, 236);"> *@
+@*             @Body *@
+@*         </article> *@
+@*     </main> *@
+@* </div> *@
+@* *@
+@* <div id="blazor-error-ui"> *@
+@*     An unhandled error has occurred. *@
+@*     <a href="" class="reload">Reload</a> *@
+@*     <a class="dismiss">🗙</a> *@
+@* </div> *@
+
+<FluentLayout Class="vh-100 overflow-hidden">
+    <FluentHeader style="background-color: transparent; border-bottom: 0.5px solid black; height: 60px;">
+        <FluentButton @onclick="MenuExpandedclick" Class="border-0 bg-transparent d-lg-none">
+            <FluentIcon Value="@(new Icons.Regular.Size24.Navigation())" />
+        </FluentButton>
+        <FluentSpacer/>
+        <UserOptionsMenu/>
+    </FluentHeader>
+    
+    <FluentStack Class="h-100" Orientation="Orientation.Horizontal" Style="height: calc(100vh - 60px)">
+       @if (FormState.navStateService.smallMenu)
+       {
+           <FluentNavMenu Class="h-100 d-lg-none h-100 bg-white" @bind-Expanded=FormState.navStateService.smallMenu Title="Databound demo" Style=" position: fixed; z-index: 100; max-width: 350px;">
+               <div style="height: 90%">
+                   <NavMenuContent/>
+               </div>
+           </FluentNavMenu>
+       }
+        
+      
+
+        <FluentNavMenu Class="d-none d-lg-block  h-100" @bind-Expanded=FormState.navStateService.menuOpen Title="Databound demo" Style="max-width: 350px;">
+            <div style="height: 90%" Class="border-0 bg-transparent">
+                <NavMenuContent/>
+            </div>
+            <div class="d-flex justify-content-center">
+                @if (FormState.navStateService.menuOpen)
+                {
+                    <FluentButton @onclick="MenuExpandedclick" Class="border-0 bg-transparent">
+                        <FluentIcon Value="@(new Icons.Regular.Size24.ChevronLeft())"/>
+                        Recolher Menu
+                    </FluentButton>
+                }
+                else
+                {
+                    <FluentButton @onclick="MenuExpandedclick" Class="border-0 bg-transparent">
+                        <FluentIcon Value="@(new Icons.Regular.Size24.ChevronRight())"/>
+                    </FluentButton>
+                }
+            </div>
+        </FluentNavMenu>
+        <FluentStack Orientation="Orientation.Vertical"  Style="height: calc(100vh - 60px); overflow: hidden;">
+            @Body
+            <FluentToastProvider MaxToastCount="10" />
+        </FluentStack>
+    </FluentStack>
+
+</FluentLayout>
+
+@code {
+
+    private void MenuExpandedclick()
+    {
+        FormState.navStateService.menuOpen = !FormState.navStateService.menuOpen;
+        FormState.navStateService.smallMenu = !FormState.navStateService.smallMenu;
+    }
+}
+
+
+
+
+
+
+
+    @* <div class="d-flex flex-grow-1"> *@
+    @*     <!-- Menu Lateral --> *@
+    @*     <div class="flex-shrink-0 d-none d-lg-block" style="min-width: 350px; height: calc(100vh - 60px)"> *@
+    @*         <FluentNavMenu class="m-0 flex-grow-0 h-100"> *@
+    @*             <NavMenu/> *@
+    @*         </FluentNavMenu> *@
+    @*     </div> *@
+    @* *@
+    @*     <!-- Conteúdo Principal --> *@
+    @*     <div class="flex-grow-1 d-flex flex-column"> *@
+    @*         <FluentBodyContent class="flex-grow-1" style="height: calc(100vh - 60px);"> *@
+    @*              *@
+    @*         </FluentBodyContent> *@
+    @*     </div> *@
+    @* </div> *@
+
+    <!-- FluentFooter -->
+
+
+@code {
+
+
+    // bool ShowHeader = true;
+    // bool ShowNavMenu = true;
+    // bool ShowBodyContent = true;
+    // bool ShowFooter = true;
+}
+
+
+
+<FluentToastProvider />
+<FluentDialogProvider />
+<FluentTooltipProvider />
+<FluentMessageBarProvider />

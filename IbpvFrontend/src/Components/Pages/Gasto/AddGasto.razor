@@ -1,0 +1,128 @@
+﻿@page "/addgasto"
+@using IbpvFrontend.src.Services
+@using Blazorise;
+@using System.IO
+@using Google.Apis.Upload
+@using IbpvFrontend.src.Services.ServiceUpload
+@using IbpvFrontend.src.Components.Pages.Gasto.form
+@using Microsoft.FluentUI.AspNetCore.Components
+@using Color = Microsoft.FluentUI.AspNetCore.Components.Color
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject IServiceUpload serviceUpload;
+@inject IProviderGasto providerGasto;
+@inject Microsoft.FluentUI.AspNetCore.Components.IToastService ToastService
+@inject IDialogService DialogService
+
+<PageTitle>Gasto</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <body class="w-100 h-100 p-3" style="overflow-y: auto;">
+        <div class="h-100 w-100 d-md-flex align-items-md-center flex-md-column justify-content-md-center">
+            <FormAddGasto @ref="_formAddGasto" formsubmit="formSubmitisValid"/>
+        </div>
+
+        
+        <FluentOverlay @bind-Visible=@visible
+                       Opacity="0.4"
+                       BackgroundColor="#838383"
+                       FullScreen="true"
+                       PreventScroll=true
+                       Dismissable="false"
+                       >
+                           <FluentProgressRing />
+        </FluentOverlay>
+        </body>
+    </Authorized>
+    <NotAuthorized>
+       @try{
+            Navigation.NavigateTo("/");
+       }catch{}
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+    private FormAddGasto _formAddGasto;
+    
+    //controla o overlay de carregamento
+    private bool visible = false;
+    
+    //quando o formulario for valido
+    private async Task formSubmitisValid(DtoGastoPost formvalues)
+    {
+        //verificar se tem imagem
+        if (_formAddGasto.memoryStreamExist())
+        {
+            //chama o overlay e tenta fazer o upload
+            visible = true;
+            try
+            {
+               formvalues.UrlComprovante =  await getMsAndUpload();
+               await postGasto(formvalues);
+            }
+            catch (Exception e)
+            {
+                await DialogService.ShowErrorAsync("Erro ao adicionar imagem");
+            }
+        }
+        
+        //se não tiver imagem notifica o usuario.
+        else
+        {
+            var dialog = await DialogService.ShowMessageBoxAsync(new DialogParameters<MessageBoxContent>()
+            {
+                Content = new()
+                {
+                    Title = "Atenção",
+                    MarkupMessage = new MarkupString("Você está prestes a enviar um gasto sem  <strong>imagem</strong>"),
+                    Icon = new Icons.Filled.Size24.Warning(),
+                    IconColor = Color.Warning,
+                },
+                PrimaryAction = "Voltar",
+                SecondaryAction = "Enviar",
+                Width = "500px",
+                
+            });
+            var result = await dialog.Result;
+
+            if (result.Cancelled)
+            {
+                visible = true;
+                await postGasto(formvalues);
+            }
+        }
+        visible = false;
+    }
+
+    private async Task<string> getMsAndUpload()
+    {
+       
+        using (var ms = new MemoryStream())
+        {
+            var imageData = await _formAddGasto.getMStream();
+            var upload = await serviceUpload.upload("17ercMWMOgrgoYViCqQogmw6tQ5vT5tjI",$"{imageData.fileName}_{DateTime.Now.Ticks}", imageData.memoryStream ,imageData.fileType);
+            return upload;
+        }
+       
+       
+    }
+    
+    //post
+    private async Task postGasto(DtoGastoPost gasto)
+    {
+        try
+        {
+           await  providerGasto.addGasto(gasto);
+           ToastService.ShowSuccess("Gasto adicionado com sucesso.");
+           _formAddGasto.cleanForms();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            await DialogService.ShowErrorAsync("Erro ao enviar gasto");
+        }
+    }
+}
+

@@ -1,0 +1,67 @@
+﻿@using System.Globalization
+@using Blazorise
+
+@* <div style="width: 90%; max-width: 700px; background-color: rgba(255, 255, 255, 0.904);"> *@
+<div class=" d-flex" style="background-color: rgb(255, 255, 255);">
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+            <h4 class="card-title h5">@parametros.Descricao</h4>
+            <p class="card-text text-lg" style="font-size: medium">@parametros.Data.ToString("dd/MM/yyyy")</p>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+            <p class="card-text text-lg">Origem: @parametros.Caixa</p>
+            <p class="card-text text-lg">Valor: @parametros.Valor.ToString("c2",CultureInfo.CreateSpecificCulture("pt-BR"))</p>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between">
+            <button type="button" @onclick="onClickPlusInfo"  class="btn btn-outline-info btn-sm">mais informações</button>
+            <button type="button" @onclick="onDelete" class="btn btn-outline-danger  btn-sm">excluir</button>
+        </div>
+
+    </div>
+</div>
+
+<Modal @ref="modalRef">
+    <ModalContent Centered Size="ModalSize.Large" Style="height: 50vh ">
+        <ModalHeader>
+            <ModalTitle>Gasto: @parametros.Caixa</ModalTitle>
+            <CloseButton />
+        </ModalHeader>
+        <ModalBody Class="d-flex align-items-center justify-content-center">
+            <iframe  class=" d-flex h-100 w-50" src="https://drive.google.com/file/d/@parametros.UrlComprovante/preview" ></iframe>
+        </ModalBody>
+        <ModalFooter>
+            <a href="https://drive.google.com/file/d/@parametros.UrlComprovante/preview" class="btn btn-primary" target="_blank" @onclick="HideModal">Baixar</a>
+            <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+@code { 
+    [Parameter]
+    required public GastoPagDTO parametros {get; set;}
+
+    [Parameter]
+    public EventCallback onDelete{get; set;}
+
+    private void onClickPlusInfo()
+    {
+        ShowModal();
+        Console.WriteLine(parametros);
+    }
+    
+    // reference to the modal component
+    private Modal modalRef;
+
+    private Task ShowModal()
+    {
+        return modalRef.Show();
+    }
+
+    private Task HideModal()
+    {
+        return modalRef.Hide();
+    }
+}
+   
+        

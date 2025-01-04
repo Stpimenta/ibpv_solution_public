@@ -1,0 +1,308 @@
+@* @page "/virtualize-example" *@
+@* @using System.Threading.Tasks *@
+@* @using System.Linq *@
+@* @using Microsoft.AspNetCore.Components.Web.Virtualization *@
+@* *@
+@* <h3>Virtualize Example with Simulated Pagination</h3> *@
+@* *@
+<style>
+    /* Estilos minimalistas para a barra de rolagem */
+    .scroll-container {
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #888 #f1f1f1; /* Firefox */
+    }
+
+    /* Estilos para Webkit (Chrome, Safari, Edge) */
+    .scroll-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+</style>
+@* *@
+@* <div class="scroll-container"> *@
+@*     <Virtualize ItemsProvider="LoadItems" ItemSize="50"> *@
+@*         <ItemContent> *@
+@*             <div style="height:50px; display: flex; align-items: center; padding: 0 10px;"> *@
+@*                 @context.Name - @context.Ddd *@
+@*             </div> *@
+@*         </ItemContent> *@
+@*     </Virtualize> *@
+@* </div> *@
+@* *@
+@* @code { *@
+@*     private static readonly (string Name, string Ddd)[] StatesAndDdds = new[] *@
+@*     { *@
+@*         ("Acre", "68"), ("Alagoas", "82"), ("Amapá", "96"), ("Amazonas", "92"), *@
+@*         ("Bahia", "71"), ("Ceará", "85"), ("Distrito Federal", "61"), ("Espírito Santo", "27"), *@
+@*         ("Goiás", "62"), ("Maranhão", "98"), ("Mato Grosso", "65"), ("Mato Grosso do Sul", "67"), *@
+@*         ("Minas Gerais", "31"), ("Pará", "91"), ("Paraíba", "83"), ("Paraná", "41"), *@
+@*         ("Pernambuco", "81"), ("Piauí", "86"), ("Rio de Janeiro", "21"), ("Rio Grande do Norte", "84"), *@
+@*         ("Rio Grande do Sul", "51"), ("Rondônia", "69"), ("Roraima", "95"), ("Santa Catarina", "48"), *@
+@*         ("São Paulo", "11"), ("Sergipe", "79"), ("Tocantins", "63") *@
+@*     }; *@
+@* *@
+@*     private async ValueTask<ItemsProviderResult<(string Name, string Ddd)>> LoadItems(ItemsProviderRequest request) *@
+@*     { *@
+@*         // Simulate an async data fetch with Task.Delay *@
+@*         await Task.Delay(500); *@
+@* *@
+@*         // Page size and start index for simulated pagination *@
+@*         int pageSize = 10; // Adjust this to match your desired page size *@
+@*         int startIndex = request.StartIndex; *@
+@*         int endIndex = Math.Min(startIndex + pageSize, StatesAndDdds.Length); *@
+@* *@
+@*         // Return items and a total count, though the total count is approximated here *@
+@*         var items = StatesAndDdds.Skip(startIndex).Take(endIndex - startIndex); *@
+@*         var totalItemCount = StatesAndDdds.Length; // Known number of items *@
+@* *@
+@*         return new ItemsProviderResult<(string Name, string Ddd)>(items, totalItemCount); *@
+@*     } *@
+@* } *@
+
+
+@using Microsoft.FluentUI.AspNetCore.Components
+@using Blazorise
+@using Color = Blazorise.Color
+@using System.Timers;
+@inject IProviderMembro providerMembro
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+<h3>MembroInfinityScroll</h3>
+
+
+<FluentButton OnClick="ShowModal" IconStart="@(new Icons.Regular.Size20.Search())"
+              Appearance="Appearance.Accent">
+</FluentButton>
+
+<Modal @ref="modalRef">
+    <ModalContent Size="ModalSize.Fullscreen">
+        <ModalHeader>
+         
+                
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column">
+                <ModalTitle> Buscar Usuarios</ModalTitle>
+                <div class="col-md-5 col-12">
+                    <FluentSearch 
+                                  @bind-Value="value"
+                                  @bind-Value:after="HandleClear"
+                                  @oninput="onInputSearch"
+                                  AutoComplete="off"
+                                  Appearance="FluentInputAppearance.Filled"
+                                  Style="width: 100%"/>
+                </div>
+                
+            </div>
+        
+            <CloseButton/>
+        </ModalHeader>
+        <ModalBody>
+            
+                <div class="d-flex justify-content-center align-items-center flex-column h-100">
+                    @if (false)
+                    {
+                        <div class="h-100 w-100 d-flex align-items-start justify-content-center">
+                            <FluentProgressRing></FluentProgressRing>
+                        </div>
+                    }
+                    else
+                    {
+                        
+                        <div class="scroll-container">
+                            <Virtualize ItemsProvider="LoadItems" ItemSize="50">
+                                <ItemContent>
+                                    <div class="d-flex  justify-content-center align-items-center" style="height: 50px">
+                                        @context.Nome - @context.TokenContribuicao
+                                    </div>
+                                </ItemContent>
+                            </Virtualize>
+                        </div>
+                        
+                    }
+                </div>
+          
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+@code {
+    //variavel para controlar  ringLoading
+    private bool ringLoad = false;
+    
+    // Componentes do modal para exibir e fechar
+    private Modal modalRef;
+
+    private Task ShowModal()
+    {
+        return modalRef.Show();
+    }
+
+    private Task HideModal()
+    {
+        return modalRef.Hide();
+    }
+    
+    //lista de usuarios e variaveis  para controlar a paginação
+    private List<UsuarioPagDTO> users = new();
+    private string? value;
+    private int _page = 1;
+    private int _maxPage = 0;
+    private int _itemsQuantity = 30;
+    private bool firstRender = true;
+    
+    
+    //metodos para adicionar items a lista e controlar o volume de requisições
+    private async Task addItemsList(bool search)
+    {
+            if (search)
+                users =  new();
+            
+            //consultar a api
+            PaginetedResultDTO<UsuarioPagDTO> paginetedUser = null;
+            if (_page <= _maxPage || firstRender)
+            {
+                paginetedUser = await providerMembro.getPageUsuario(page:_page,itensQuantity:_itemsQuantity,value);
+                //se tiver adiciona
+                if (paginetedUser.items.Count > 0)
+                {
+                    _page++;
+                    users.AddRange(paginetedUser.items);
+                }
+            }
+           
+            //na primeira renderização guardar quantas paginas temos
+            if (firstRender && paginetedUser != null)
+            {
+                _maxPage = paginetedUser.pages;
+                firstRender = false;
+            }
+            ringLoad = false;
+    }
+    //searchBar
+    private Timer? timerSearch;
+    
+    private void onInputSearch(ChangeEventArgs e)
+    {
+        //atualizo em tempo real
+        value = e.Value.ToString();
+        
+        //coloco o carregamento
+        ringLoad = true;
+        
+        //se não for nulo quebro o timer
+        if (timerSearch != null)
+        {
+            timerSearch.Dispose();
+            timerSearch = null;
+        }
+        
+        //a cada onInput vou criar um timer
+        if (timerSearch == null)
+        {
+            timerSearch = new Timer(600);
+            //vincular Cb
+            timerSearch.Elapsed += (sender, args) => printValue(value);
+            //não deixo repetir o envento.
+            timerSearch.AutoReset = false;
+            
+            timerSearch.Start();
+        }
+      
+    }
+
+    private async Task printValue(string value)
+    {
+        //libero o timer
+        timerSearch.Dispose();
+        timerSearch = null;
+        await InvokeAsync(()=>StateHasChanged());
+        //resetar os parametros da pesquisa
+        _page = 1;
+        _maxPage = 0;
+        firstRender = true;
+        await addItemsList(true);
+        await InvokeAsync(()=>StateHasChanged());
+    }
+    
+    //handleCrear
+    private async Task HandleClear()
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            ringLoad = true;
+            await InvokeAsync(()=>StateHasChanged());
+            //resetar os parametros da pesquisa
+            _page = 1;
+            _maxPage = 0;
+            firstRender = true;
+            await Task.Delay(200);
+            ringLoad = false;
+            await InvokeAsync(()=>StateHasChanged());
+        }
+          
+    }
+
+    
+    
+    //eventcallback para chamar o click e fornecer o token membro
+    [Parameter] 
+    public EventCallback<string> selectTokenUser { get; set; }
+
+    private async Task UserClick(string token)
+    {
+        HideModal();
+        await selectTokenUser.InvokeAsync(token);
+    }
+    
+    
+    
+    private static readonly (string Name, string Ddd)[] StatesAndDdds = new[] 
+        {
+            ("Acre", "68"), ("Alagoas", "82"), ("Amapá", "96"), ("Amazonas", "92"),
+            ("Bahia", "71"), ("Ceará", "85"), ("Distrito Federal", "61"), ("Espírito Santo", "27"),
+            ("Goiás", "62"), ("Maranhão", "98"), ("Mato Grosso", "65"), ("Mato Grosso do Sul", "67"),
+            ("Minas Gerais", "31"), ("Pará", "91"), ("Paraíba", "83"), ("Paraná", "41"),
+            ("Pernambuco", "81"), ("Piauí", "86"), ("Rio de Janeiro", "21"), ("Rio Grande do Norte", "84"),
+            ("Rio Grande do Sul", "51"), ("Rondônia", "69"), ("Roraima", "95"), ("Santa Catarina", "48"),
+            ("São Paulo", "11"), ("Sergipe", "79"), ("Tocantins", "63")
+        };
+
+
+    private int virtualizePageindex = -1;
+    private int virtualizePage = 0;
+    
+    private async ValueTask<ItemsProviderResult<UsuarioPagDTO>> LoadItems(ItemsProviderRequest request)
+    {
+        int pageIndex = request.StartIndex / _itemsQuantity + 1;
+
+        // Consultar a API
+        PaginetedResultDTO<UsuarioPagDTO> paginetedUser = await providerMembro.getPageUsuario(page: pageIndex, itensQuantity: _itemsQuantity, value);
+
+        // Adicionar itens se existirem
+        if (paginetedUser.items.Count > 0)
+        {
+            users.AddRange(paginetedUser.items);
+        }
+
+        // Retornar os itens e um valor alto para totalItemCount, indicando que não há limite conhecido
+        return new ItemsProviderResult<UsuarioPagDTO>(paginetedUser.items, int.MaxValue);
+    }
+
+
+}

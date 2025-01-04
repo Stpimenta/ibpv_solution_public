@@ -1,0 +1,98 @@
+@using IbpvFrontend.Components.Pages.Models
+@using Microsoft.FluentUI.AspNetCore.Components
+<FluentInputFile Id="my-file-uploader"
+                 Mode="InputFileMode.Buffer"
+                 Multiple="false"
+                 MaximumFileSize="@(5*1024*1024)"
+                 Accept=".pdf,.doc,.docx,.xls,.xlsx,image/*"
+                 @bind-ProgressPercent="@ProgressPercent"
+                 OnCompleted="@OnCompletedAsync"
+                 Style="height: 175px; border: 1px dashed; position:relative; z-index: 10;">
+    <ChildContent>
+
+        <div class="d-flex flex-column align-items-center justify-content-center" style="height: 175px;">
+            @if(filesPresent){
+                foreach (var file in Files)
+                {
+                    <p>Arquivos Enviados:</p>
+
+                    <li>
+                        @file.Name🔹
+                        @($"{Decimal.Divide(file.Size, 1048576):N2} MB") 🔹
+                        @file.ContentType
+                    </li>
+
+                    <button type="button" @onclick="removeFiles" class="btn btn-danger mt-3">remover</button>
+                }
+            }
+
+            else
+            {
+                <label for="my-file-uploader">
+                    <FluentIcon Value="@(new @Icons.Regular.Size24.ArrowUpload())" />
+                </label>
+                <p>Arraste seus arquivos, ou click para fazer o upload.</p>
+            }
+        </div>
+    </ChildContent>
+</FluentInputFile>
+
+@code {
+    int ProgressPercent = 0;
+    public bool filesPresent = false;
+    
+    FluentInputFileEventArgs[] Files = Array.Empty<FluentInputFileEventArgs>();
+
+    [Parameter] 
+    public EventCallback<bool> filesPresentCB { get; set;}
+
+    private async Task OnCompletedAsync(IEnumerable<FluentInputFileEventArgs> files)
+    {
+        Files = files.ToArray();
+        await Task.Delay(3000);
+        ProgressPercent = 0;
+        await Task.Delay(50);
+        filesPresent = true;
+        filesPresentCB.InvokeAsync(filesPresent);
+    }
+
+    public void removeFiles()
+    {
+        foreach (var file in Files)
+        {
+            file.LocalFile?.Delete();
+        }
+
+        filesPresent = false;
+        filesPresentCB.InvokeAsync(filesPresent);
+    }
+
+    public async Task<DtoImage> getFileStream()
+    {
+        DtoImage dataImage = new()
+        {
+            memoryStream = new MemoryStream()
+        };
+        foreach (var file in Files)
+        {
+            // Verifique se o buffer não é nulo ou vazio
+            if (file.Buffer.Data != null && file.Buffer.Data.Length > 0)
+            {
+                // Criar um MemoryStream a partir do buffer
+                using (var tempStream = new MemoryStream(file.Buffer.Data))
+                {
+                    // Atualizar propriedades do DtoImage
+                    tempStream.Position = 0;
+                    tempStream.CopyToAsync(dataImage.memoryStream);
+                    dataImage.fileName = file.Name;
+                    dataImage.fileType = file.ContentType;
+                }
+            }
+        }
+
+        // Resetar a posição do MemoryStream
+        dataImage.memoryStream.Position = 0;
+
+        return dataImage;
+    }
+}

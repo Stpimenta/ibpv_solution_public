@@ -1,0 +1,187 @@
+@rendermode InteractiveServer
+@using System.Globalization
+@using Fluent = Microsoft.FluentUI.AspNetCore.Components
+@using Microsoft.FluentUI.AspNetCore.Components
+@using Blazorise
+@using IbpvFrontend.Components.Pages.Models
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@inject IProviderCaixa providercaixa
+<div class="d-flex col-md-6 justify-content-center align-items-center flex-column">
+    <EditForm @ref="form" Model="formValues" OnValidSubmit="@isvalid" class="w-100 d-flex flex-column justify-content-center">
+        <DataAnnotationsValidator />
+        <div class="form-row form-group">
+            <div class="col-12 col-md-6 d-flex justify-content-end flex-column">
+                <FluentLabel Typo="Fluent.Typography.Body"> Valor </FluentLabel>
+                <FluentTextField Appearance="FluentInputAppearance.Filled" @bind-Value="selectedValueValor" style="width: 100%;"></FluentTextField>
+                <div style="height: 15px">
+                    <ValidationMessage For="@(() => formValues.Valor)" style="height: 15px;" />
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mt-1 d-flex flex-column justify-content-end w-auto">
+                @* <DatePicker DateChanged="@AtribuirData" TValue="DateTime?" InputFormat="dd/MM/yyyy" DisplayFormat="dd/MM/yyyy"/> *@
+                <FluentDatePicker Label="Data" Appearance="FluentInputAppearance.Filled"  Style="max-width: 300px"  AriaLabel="To" @bind-Value="@formValues.Data" />
+                <div style="height: 15px">
+                    <ValidationMessage For="@(() => formValues.Data)" style="height: 15px;" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <FluentLabel Typo="Fluent.Typography.Body"> Descrição </FluentLabel>
+            @* <input @onblur="ValidateField" @bind="formValues.Descricao" type="text" class="form-control" placeholder="Descricao"> *@
+            <FluentTextField Appearance="FluentInputAppearance.Filled" @bind-Value=formValues.Descricao style="width: 100%;"></FluentTextField>
+            <ValidationMessage For="@(() => formValues.Descricao)"/>
+        </div>
+        <div class="form-group">
+            <FluentLabel Typo="Fluent.Typography.Body"> Numero Fiscal (opcional)</FluentLabel>
+            <FluentTextField Appearance="FluentInputAppearance.Filled" @bind-Value=formValues.NumeroFiscal style="width: 100%;"></FluentTextField>
+            <ValidationMessage For="@(() => formValues.NumeroFiscal)"/>
+        </div>
+
+        <div class="form-group">
+            <FluentLabel Typo="Fluent.Typography.Body"> Caixa </FluentLabel>
+            <FluentSelect  Position="SelectPosition.Below"
+                          @bind-Value="selectedValueOptions" TOption="int" class="ml-0" style="margin-left: 0;">
+                <FluentOption Value="">Selecione uma opção</FluentOption>
+                @if (caixas is not null)
+                {
+                    foreach (var caixa in caixas)
+                    {
+                        <FluentOption Value="@caixa.Id.ToString()">@caixa.Nome</FluentOption>
+                    }
+                }
+            </FluentSelect>
+            <ValidationMessage For="@(() => formValues.IdCaixa)" />
+        </div>
+        
+
+        <div class="mb-5">
+            <label for="inputState">Faça upload da imagem do comprovante(opcional)</label>
+            <UploadInputv2 @ref="_uploadInput"/>
+        </div>
+      
+        <div class="d-flex justify-content-center mb-2">
+            <button @onclick="(()=>firstFill=true)" type="submit" class="btn btn-primary mt-1">Enviar</button>
+        </div>
+    </EditForm>
+</div>
+@code {
+    //variaveis
+    private DtoGastoPost formValues = new DtoGastoPost();
+    private List<CaixaDTO>? caixas = null;
+    UploadInputv2 _uploadInput = new();
+    private EditForm form;
+    private bool firstFill = false;
+    //stream image
+    public bool imagemStreamExist { get; set; } = false;
+    
+    //tratar options faço uma variavel e manipulo o get e set dela
+    private string selectedValueOptions
+    {
+        get => formValues.IdCaixa.ToString();
+        set => formValues.IdCaixa = string.IsNullOrEmpty(value) ? null : int.Parse(value);
+    }
+    
+    //tratar options faço uma variavel e manipulo o get e set dela
+    private string selectedValueValor
+    {
+        get
+        {
+            if (formValues.Valor == 0)
+            {
+                return "";
+            }
+            else
+            {
+                return formValues.Valor.ToString("C", new CultureInfo("pt-BR"));;
+            }
+        }
+        set
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                try
+                {
+                    formValues.Valor =  decimal.Parse(value, NumberStyles.Currency, new CultureInfo("pt-BR"));
+                }
+                catch (Exception e)
+                {
+                    formValues.Valor = 0;
+                }
+               
+            }
+        }
+    }
+    
+    
+    //validação "constante";
+    private void ValidateField()
+    {
+        if (firstFill)
+        {
+            form.EditContext.Validate();
+            // Re-renderizar o formulário para atualizar as mensagens de validação
+            StateHasChanged();
+        }
+    }
+    
+    //consultar os caixas
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            try
+            {
+                caixas = await providercaixa.getCaixa();
+                StateHasChanged();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+    }
+    
+    //dataChanged
+    private void AtribuirData(DateTime? Data)
+    {
+        if (Data.HasValue)
+        {
+            formValues.Data = (DateTime)Data;
+        }
+        
+    }
+    
+    //callback para notificar o componente pai que tudo está valido
+    [Parameter]
+    public EventCallback<DtoGastoPost> formsubmit {get; set;}
+    
+    public async Task isvalid()
+    {
+        
+        await formsubmit.InvokeAsync(formValues);
+    }
+    
+    //pegar o memorystream
+    public async Task<DtoImage> getMStream()
+    {
+        return await _uploadInput.GetStream();
+    }
+    
+    //verificar se tem arquivo.
+    public bool memoryStreamExist()
+    {
+        return _uploadInput.imagemExist;
+    }
+    
+    //limpar o formulario
+    public async Task cleanForms()
+    {
+        firstFill = false;
+        var caixa = formValues.IdCaixa;
+        formValues = new DtoGastoPost()
+        {
+            IdCaixa = caixa
+        };
+        await _uploadInput.ClearInput();
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "eMx6ezw3T8bKlpEPd5SmDQzJjOWXv87Kzl8lgoiEH5c576Vkg/f6wEzUMjF/jDwhvsz5xornNoZ0Bv44q/0uWw==",
+  "success": true,
+  "projectFilePath": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/IbpvDtos.csproj",
+  "expectedPackageFiles": [
+    "/home/sergio/.nuget/packages/fluentvalidation/11.9.1/fluentvalidation.11.9.1.nupkg.sha512"
+  ],
+  "logs": []
+}

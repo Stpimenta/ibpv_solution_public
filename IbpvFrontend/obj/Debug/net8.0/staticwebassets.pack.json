@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/obj/Debug/net8.0/scopedcss/projectbundle/IbpvFrontend.bundle.scp.css",
+      "PackagePath": "staticwebassets/IbpvFrontend.bundle.scp.css"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/images/IBPV.jpg",
+      "PackagePath": "staticwebassets/images/IBPV.jpg"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/images/selectBox.png",
+      "PackagePath": "staticwebassets/images/selectBox.png"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/js/Observable.js",
+      "PackagePath": "staticwebassets/js/Observable.js"
+    },
+    {
+      "Id": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/wwwroot/js/Relatorio.js",
+      "PackagePath": "staticwebassets/js/Relatorio.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.IbpvFrontend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.IbpvFrontend.props",
+      "PackagePath": "build\\IbpvFrontend.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.IbpvFrontend.props",
+      "PackagePath": "buildMultiTargeting\\IbpvFrontend.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.IbpvFrontend.props",
+      "PackagePath": "buildTransitive\\IbpvFrontend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

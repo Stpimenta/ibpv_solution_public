@@ -1,0 +1,55 @@
+﻿@page "/home"
+@using Microsoft.FluentUI.AspNetCore.Components
+@using IbpvFrontend.src.Components.Pages.Membro.form
+@using IbpvFrontend.src.Components.Pages.Gasto.form
+@using IbpvFrontend.src.Components.Pages.Contribuicao.components
+@using IbpvFrontend.src.Components.Pages.Contribuicao.form
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+<PageTitle>Counter</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        
+
+        @* <FluentButton Appearance="Appearance.Accent" @onclick="() => visible = !visible">Show Overlay</FluentButton> *@
+        @* *@
+        @* <FluentOverlay @bind-Visible=@visible *@
+        @*                Opacity="0.4" *@
+        @*                BackgroundColor="#838383" *@
+        @*                FullScreen="true" *@
+        @*                OnClose="HandleOnClose" *@
+        @*                PreventScroll=true *@
+        @*                Dismissable="false" *@
+        @*                Visible="visible" *@
+        @*                > *@
+        @*                    <FluentProgressRing /> *@
+        @*     <FluentButton Appearance="Appearance.Accent" @onclick="() => visible = !visible">Show Overlay</FluentButton> *@
+        @* </FluentOverlay> *@
+        
+        @* <MembroInfinityScroll selectTokenUser="handleInfinitiClick"/> *@
+        @* <p>token @token</p> *@
+        @* <ContribuicaoForm/> *@
+        @* <UploadInputv2/> *@
+       <FluentLabel>Em Contrução</FluentLabel>
+    </Authorized>
+    <NotAuthorized>
+       @try{
+            Navigation.NavigateTo("/");
+       }catch{}
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    bool visible = false;
+    string token;
+
+    private void handleInfinitiClick(string token)
+    {
+        this.token = token;
+        StateHasChanged();
+    }
+    
+}
+

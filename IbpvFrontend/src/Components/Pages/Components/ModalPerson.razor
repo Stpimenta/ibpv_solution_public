@@ -1,0 +1,20 @@
+<Modal @ref="modalRef">
+    <ModalContent Centered>
+        <ModalHeader>
+            <ModalTitle>@modalTitle</ModalTitle>
+        </ModalHeader>
+        <ModalBody TextColor="colorText">
+            @modalBody
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Primary" Clicked="@CloseModal">voltar</Button>
+            <Button Color="colorButton" Clicked="(()=>deleteGasto())">Ok</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+@code {
+    [Parameter]
+    public Modal? modalRef;
+    
+}

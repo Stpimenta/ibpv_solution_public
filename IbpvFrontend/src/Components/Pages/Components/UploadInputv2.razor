@@ -1,0 +1,181 @@
+@using IbpvFrontend.Components.Pages.Models
+@using IbpvFrontend.src.Services.ServiceUpload
+@using Microsoft.FluentUI.AspNetCore.Components
+@using Microsoft.FluentUI.AspNetCore.Components.Extensions
+@inject IServiceUpload serviceUpload
+@inject IDialogService DialogService
+@inject IJSRuntime JSRuntime
+
+<!-- Div com borda onde o InputFile será posicionado -->
+<div style="position: relative; width: 100%; height: 175px; border: 2px dashed #b6d4fe;">
+    <!-- InputFile completamente escondido -->
+    <InputFile @ref="fileInput" OnChange="HandleFileChange" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx"
+               id="fileInput" class="d-none" />
+
+    <!-- Conteúdo Adicional -->
+    @if (!imagemExist)
+    {
+        <div style="position: relative; z-index: 1; cursor: pointer;"
+             onclick="triggerFileInput()"
+             class="d-flex align-items-center justify-content-center flex-column h-100 text-black">
+            <FluentIcon Value="@(new Icons.Regular.Size24.ArrowUpload())"/>
+            <FluentLabel>Selecione um arquivo</FluentLabel>
+        </div>
+    }
+    else
+    {
+        
+        <div style="position: relative; z-index: 1; cursor: pointer;"
+             class="d-flex align-items-center justify-content-center flex-column h-100">
+            @if (Percentage < 100)
+            {
+                <FluentLabel>Carregando...</FluentLabel>
+
+                <FluentProgress Min="0" Max="80" Value="@(Indeterminate ? null : Percentage)"
+                                Width="300px"
+                                Stroke="@Stroke"
+                                Color="@(Color.ToAttributeValue())"/>
+            }
+            else
+            {
+                <!-- Botão para limpar o arquivo -->
+                <FluentLabel>Nome: @file.Name</FluentLabel>
+                <FluentLabel>Tamanho: @ConvertSize(file.Size)</FluentLabel>
+                <button @onclick="ClearInput" type="button" class="btn btn-danger mt-3">Limpar</button>
+            }
+        </div>
+    }
+    
+</div>
+
+
+@if (jsInitialized)
+{
+    <script>
+        function clearInputFile(inputId) {
+            var input = document.getElementById(inputId);
+            if (input) {
+                input.value = ''; // Limpa o valor do input
+            }
+        }
+
+        function triggerFileInput() {
+            document.getElementById('fileInput').click();
+        }
+    </script>
+}
+
+@code {
+    //fluent bar Progress
+    ProgressStroke Stroke = ProgressStroke.Small;
+    int Percentage = 0;
+    bool Indeterminate = false;
+    OfficeColor Color = OfficeColor.Default;
+    
+    //progress bar
+    private async Task barProgress()
+    {
+        while (Percentage < 100)
+        {
+            Percentage = Percentage + 10;
+            await Task.Delay(200);
+            InvokeAsync(() => StateHasChanged());
+        }
+    }
+    
+    //tamanho maximo
+    int _maxAllowedSize = 8 * 1024 * 1024;
+    
+    //file 
+    IBrowserFile? file;
+    
+    //notificar se tem imagem ou não
+    public bool imagemExist = false;
+    
+    //manipular o file input
+    private InputFile fileInput;
+    
+    //notificar se o jS esta disponivel;
+    private bool jsInitialized = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsInitialized = true;
+            StateHasChanged();
+        }
+    }
+
+    private async Task HandleFileChange(InputFileChangeEventArgs e)
+    {
+        if (Validate(e))
+        {
+            file = e.File;
+            imagemExist = true;
+            await barProgress();
+        }
+    }
+
+    // Obter MemoryStream
+    public async Task<DtoImage> GetStream()
+    {
+        if (file != null)
+        {
+            using (var inputStream = file.OpenReadStream(_maxAllowedSize))
+            {
+                // Novo Dto
+                DtoImage dtoImage = new()
+                {
+                    memoryStream = new MemoryStream(),
+                    fileName = file.Name,
+                    fileType = file.ContentType
+                };
+
+                // Carregar a stream
+                await inputStream.CopyToAsync(dtoImage.memoryStream);
+                
+                return dtoImage;
+            }
+        }
+        else
+        {
+            throw new Exception("Arquivo não selecionado");
+        }
+    }
+
+    // Validar Arquivo
+    private bool Validate(InputFileChangeEventArgs e)
+    {
+        if (e.File.Size > _maxAllowedSize)
+        {
+            DialogService.ShowError($"Arquivo muito grande, limte: {_maxAllowedSize / 1024 / 1024} mb");
+            return false;
+        }
+        return true;
+    }
+
+    // Limpar arquivos
+    public async Task ClearInput()
+    {
+        if (jsInitialized)
+        {
+            await JSRuntime.InvokeVoidAsync("clearInputFile", "fileInput");
+        }
+        file = null;
+        imagemExist = false;
+        Percentage = 0;
+    }
+    
+    //convertFileSize
+    private string ConvertSize(long bytes)
+    {
+        if (bytes >= 1024 * 1024)
+            return $"{(bytes / (1024 * 1024.0)):F2} MB";
+        else if (bytes >= 1024)
+            return $"{(bytes / 1024.0):F2} KB";
+        else
+            return $"{bytes} bytes";
+    }
+
+}

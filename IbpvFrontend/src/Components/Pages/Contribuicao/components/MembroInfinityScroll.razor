@@ -1,0 +1,211 @@
+@using Microsoft.FluentUI.AspNetCore.Components
+@using Blazorise
+@using Color = Blazorise.Color
+@using System.Timers;
+@inject IProviderMembro providerMembro
+
+<FluentButton OnClick="ShowModal" IconStart="@(new Icons.Regular.Size20.Search())"
+              Appearance="Appearance.Accent">
+</FluentButton>
+
+<Modal @ref="modalRef">
+    <ModalContent Size="ModalSize.Fullscreen">
+        <ModalHeader>
+         
+                
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column">
+                <ModalTitle> Buscar Usuarios</ModalTitle>
+                <div class="col-md-5 col-12">
+                    <FluentSearch 
+                                  @bind-Value="value"
+                                  @bind-Value:after="HandleClear"
+                                  @oninput="onInputSearch"
+                                  AutoComplete="off"
+                                  Appearance="FluentInputAppearance.Filled"
+                                  Style="width: 100%"/>
+                </div>
+                
+            </div>
+        
+            <CloseButton/>
+        </ModalHeader>
+        <ModalBody>
+            
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    @if (ringLoad)
+                    {
+                        <div class="h-100 w-100 d-flex align-items-start justify-content-center">
+                            <FluentProgressRing></FluentProgressRing>
+                        </div>    
+                    }
+                    else
+                    {
+                        <InfiniteScroll ObserverTargetId="observerTarget" ObservableTargetReached="(e) => addItemsList()">
+                            @try
+                            {
+                                if (users.Count > 0)
+                                {
+                                    foreach (var user in users)
+                                    {
+                                        <button type="button" @onclick="(() => UserClick(user.TokenContribuicao!))" class="list-group-item list-group-item-action col-12" style="max-width: 600px">
+                                            <div class="d-flex justify-content-between">
+                                                <FluentLabel class="m-0">@user.Nome</FluentLabel>
+                                                <FluentLabel class="m-0">@user.TokenContribuicao</FluentLabel>
+                                            </div>
+                                        </button>
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    <p>nenhum item encontrado</p>
+                                }
+                                <p id="observerTarget"></p>
+                               
+                            }
+                      
+                            catch (Exception e)
+                            {
+                                <li>"erro consulte o desenvolvedor"</li>
+                            }
+                            
+                        </InfiniteScroll>
+                    }
+                </div>
+          
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+@code {
+    //variavel para controlar  ringLoading
+    private bool ringLoad = false;
+    
+    // Componentes do modal para exibir e fechar
+    private Modal modalRef;
+
+    private Task ShowModal()
+    {
+        return modalRef.Show();
+    }
+
+    private Task HideModal()
+    {
+        return modalRef.Hide();
+    }
+    
+    //lista de usuarios e variaveis  para controlar a paginação
+    private List<UsuarioPagDTO> users = new();
+    private string? value;
+    private int _page = 1;
+    private int _maxPage = 0;
+    private int _itemsQuantity = 10;
+    private bool firstRender = true;
+    
+    
+    //metodos para adicionar items a lista e controlar o volume de requisições
+    private async Task addItemsList()
+    {
+            //consultar a api
+            PaginetedResultDTO<UsuarioPagDTO> paginetedUser = null;
+            if (_page <= _maxPage || firstRender)
+            {
+                paginetedUser = await providerMembro.getPageUsuario(page:_page,itensQuantity:_itemsQuantity,value);
+                //se tiver adiciona
+                if (paginetedUser.items.Count > 0)
+                {
+                    _page++;
+                    users.AddRange(paginetedUser.items);
+                }
+            }
+           
+            //na primeira renderização guardar quantas paginas temos
+            if (firstRender && paginetedUser != null)
+            {
+                _maxPage = paginetedUser.pages;
+                firstRender = false;
+            }
+            ringLoad = false;
+    }
+    
+    //searchBar
+    private Timer? timerSearch;
+    
+    private void onInputSearch(ChangeEventArgs e)
+    {
+        //atualizo em tempo real
+        value = e.Value.ToString();
+        
+        //coloco o carregamento
+        ringLoad = true;
+        
+        //se não for nulo quebro o timer
+        if (timerSearch != null)
+        {
+            timerSearch.Dispose();
+            timerSearch = null;
+        }
+        
+        //a cada onInput vou criar um timer
+        if (timerSearch == null)
+        {
+            timerSearch = new Timer(600);
+            //vincular Cb
+            timerSearch.Elapsed += (sender, args) => printValue(value);
+            //não deixo repetir o envento.
+            timerSearch.AutoReset = false;
+            
+            timerSearch.Start();
+        }
+      
+    }
+
+    private async Task printValue(string value)
+    {
+        //libero o timer
+        timerSearch.Dispose();
+        timerSearch = null;
+        await InvokeAsync(()=>StateHasChanged());
+        //resetar os parametros da pesquisa
+        infinityScrollParamsClear();
+        await addItemsList();
+        await InvokeAsync(()=>StateHasChanged());
+    }
+    
+    //handleCrear
+    private async Task HandleClear()
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            ringLoad = true;
+            await InvokeAsync(()=>StateHasChanged());
+            //resetar os parametros da pesquisa
+            infinityScrollParamsClear();
+            await Task.Delay(200);
+        }
+          
+    }
+
+    //clean InfinityScrollParams
+    private void infinityScrollParamsClear()
+    {
+        users = new();
+        _page = 1;
+        _maxPage = 0;
+        firstRender = true;
+    }
+    
+    
+    //eventcallback para chamar o click e fornecer o token membro
+    [Parameter] 
+    public EventCallback<string> selectTokenUser { get; set; }
+
+    private async Task UserClick(string token)
+    {
+        HideModal();
+        await selectTokenUser.InvokeAsync(token);
+    }
+}

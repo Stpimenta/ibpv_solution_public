@@ -1,0 +1,34 @@
+﻿@using System.Globalization
+
+<div class=" d-flex" style="background-color: rgb(255, 255, 255);">
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+            <h3 class="card-title h5">@parametros.Nome</h3>
+            <p class="card-text text-lg" style="font-size: medium">Data de nascimento: @parametros.Data_nascimento.ToString("dd/MM/yyyy")</p>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+            <p class="card-text text-lg">Email: @parametros.Email</p>
+        </div>
+       
+        <div class="d-flex flex-row justify-content-between">
+            <button type="button" class="btn btn-outline-info btn-sm">mais informações</button>
+            <button type="button" @onclick="Delete" class="btn btn-outline-danger btn-sm">excluir</button>
+        </div>
+
+    </div>
+</div>
+       
+
+@code { 
+    [Parameter]
+    required public UsuarioPagDTO parametros {get; set;}
+
+    [Parameter]
+    public EventCallback onDelete {get; set;}
+    
+    private async void Delete ()
+    {
+        await onDelete.InvokeAsync();
+    }
+}
+        

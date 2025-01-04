@@ -1,0 +1,17 @@
+@page "/relatorios"
+@inject IJSRuntime JS
+
+<h3>Welcome to Blazor</h3>
+
+<button class="custom-button-button" @onclick="ShowMessage">Click Me</button>
+<h1 class="custom-text">asdadada</h1>
+
+
+
+@code {
+    private async Task ShowMessage()
+    {
+        // Chamando a função showAlert definida no arquivo JavaScript
+        await JS.InvokeVoidAsync("showAlert", "Hello from Blazor!");
+    }
+}

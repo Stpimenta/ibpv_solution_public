@@ -1,0 +1,26 @@
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.GeneratedMSBuildEditorConfig.editorconfig
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.AssemblyInfoInputs.cache
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.AssemblyInfo.cs
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.csproj.CoreCompileInputs.cache
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/bin/Debug/net8.0/IbpvDtos.deps.json
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/bin/Debug/net8.0/IbpvDtos.dll
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/bin/Debug/net8.0/IbpvDtos.pdb
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.dll
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/refint/IbpvDtos.dll
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.pdb
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/ref/IbpvDtos.dll
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.sourcelink.json
+/home/sergio/Desktop/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.csproj.AssemblyReference.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/bin/Debug/net8.0/IbpvDtos.deps.json
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/bin/Debug/net8.0/IbpvDtos.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/bin/Debug/net8.0/IbpvDtos.pdb
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.csproj.AssemblyReference.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.GeneratedMSBuildEditorConfig.editorconfig
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.AssemblyInfoInputs.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.AssemblyInfo.cs
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.csproj.CoreCompileInputs.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.sourcelink.json
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/refint/IbpvDtos.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/IbpvDtos.pdb
+/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/Debug/net8.0/ref/IbpvDtos.dll

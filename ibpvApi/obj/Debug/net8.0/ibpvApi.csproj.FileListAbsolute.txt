@@ -1,0 +1,242 @@
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/appsettings.Development.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/appsettings.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.deps.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.runtimeconfig.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.pdb
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/AutoMapper.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/BCrypt.Net-Core.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Humanizer.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.Workspaces.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Design.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Mono.TextTemplating.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Npgsql.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.CodeDom.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.AttributedModel.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.Convention.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.Hosting.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.Runtime.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.TypedParts.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/IbpvDtos.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/IbpvDtos.pdb
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.csproj.AssemblyReference.cache
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.GeneratedMSBuildEditorConfig.editorconfig
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.AssemblyInfoInputs.cache
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.AssemblyInfo.cs
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.csproj.CoreCompileInputs.cache
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.MvcApplicationPartsAssemblyInfo.cs
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.MvcApplicationPartsAssemblyInfo.cache
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets.build.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets.development.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.ibpvApi.Microsoft.AspNetCore.StaticWebAssets.props
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.build.ibpvApi.props
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.ibpvApi.props
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.ibpvApi.props
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets.pack.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/scopedcss/bundle/ibpvApi.styles.css
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.csproj.CopyComplete
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/refint/ibpvApi.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.pdb
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.genruntimeconfig.cache
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ref/ibpvApi.dll
+/home/sergio/Desktop/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.sourcelink.json
+/home/sergio/Desktop/IbpvSolution/ibpvApi/bin/Debug/net8.0/FluentValidation.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/appsettings.Development.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/appsettings.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.deps.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.runtimeconfig.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ibpvApi.pdb
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/AutoMapper.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/BCrypt.Net-Core.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/FluentValidation.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Humanizer.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.CodeAnalysis.Workspaces.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Design.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Mono.TextTemplating.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Npgsql.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.CodeDom.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.AttributedModel.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.Convention.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.Hosting.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.Runtime.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.Composition.TypedParts.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/IbpvDtos.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/bin/Debug/net8.0/IbpvDtos.pdb
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.csproj.AssemblyReference.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.GeneratedMSBuildEditorConfig.editorconfig
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.AssemblyInfoInputs.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.AssemblyInfo.cs
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.csproj.CoreCompileInputs.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.MvcApplicationPartsAssemblyInfo.cs
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.MvcApplicationPartsAssemblyInfo.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.sourcelink.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets.build.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets.development.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.ibpvApi.Microsoft.AspNetCore.StaticWebAssets.props
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.build.ibpvApi.props
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.ibpvApi.props
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.ibpvApi.props
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/staticwebassets.pack.json
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/scopedcss/bundle/ibpvApi.styles.css
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.csproj.CopyComplete
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/refint/ibpvApi.dll
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.pdb
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ibpvApi.genruntimeconfig.cache
+/home/sergio/Desktop/New Folder/IbpvSolution/ibpvApi/obj/Debug/net8.0/ref/ibpvApi.dll

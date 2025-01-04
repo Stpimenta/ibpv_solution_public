@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\IbpvDtos\IbpvDtos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.7.307.26" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.5.2" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.2" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.68.0.3428" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.9.1" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Emoji" Version="4.6.0" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.9.1" />
+    <PackageReference Include="QuestPDF" Version="2024.7.1" />
+    <PackageReference Include="Sve.Blazor.InfiniteScroll" Version="1.0.0-alpha" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="src\Components\Pages\Membro\form\FormInputMask\**" />
+    <Compile Remove="src\Services\StateService\NavStateSerbice.cs" />
+    <Compile Remove="src\Components\Pages\Gasto\form\model\**" />
+    <Compile Remove="src\Components\Pages\Gasto\form\AddGasto.razor.cs" />
+    <Compile Remove="src\Components\Pages\Gasto\form\formModelGasto.cs" />
+    <Compile Remove="src\Components\Pages\Gasto\form\models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="src\Components\Pages\Membro\form\FormInputMask\**" />
+    <EmbeddedResource Remove="src\Components\Pages\Gasto\form\model\**" />
+    <EmbeddedResource Remove="src\Components\Pages\Gasto\form\models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="src\Components\Pages\Membro\form\FormInputMask\**" />
+    <Content Remove="src\Components\Pages\Components\ModalPersonSend.razor" />
+    <Content Remove="src\Components\Pages\Components\ModalPerson.razor" />
+    <Content Remove="src\Components\Layout\MainLayout.razor.css.razor" />
+    <Content Remove="src\Components\Layout\UserBody.razor" />
+    <Content Remove="src\Components\Layout\menuMarge.razor" />
+    <Content Remove="src\Components\Layout\NavMenu.razor" />
+    <Content Remove="src\Components\Pages\Relatorio\Relatorio.razor" />
+    <Content Remove="src\Components\Pages\Gasto\form\model\**" />
+    <Content Remove="src\Components\Pages\Gasto\form\models\**" />
+    <Content Remove="src\Components\Pages\Gasto\form\Asdadada.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="src\Components\Pages\Membro\form\FormInputMask\**" />
+    <None Remove="src\Components\Layout\EmptyLayout.razor.css" />
+    <None Remove="src\Components\Pages\Relatorio\Relatorio.razor.css" />
+    <None Remove="Properties\hello_world_questpdf.pdf" />
+    <None Remove="src\Services\PdfRelatorioGenerator\hello_world_questpdf.pdf" />
+    <None Remove="src\Services\PdfRelatorioGenerator\Logosemfundo.png" />
+    <None Remove="src\Services\PdfRelatorioGenerator\IBPV.jpg" />
+    <None Include="wwwroot\images\selectBox.png" />
+    <None Include="wwwroot\images\IBPV.jpg" />
+    <None Remove="src\Services\PdfRelatorioGenerator\bah.pdf" />
+    <None Remove="src\Components\Pages\Gasto\form\model\**" />
+    <None Remove="src\Components\Pages\Gasto\form\models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="src\Components\Pages\Gasto\components\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,181 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/IbpvFrontend.csproj": {}
+  },
+  "projects": {
+    "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/IbpvDtos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/IbpvDtos.csproj",
+        "projectName": "IbpvDtos",
+        "projectPath": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/IbpvDtos.csproj",
+        "packagesPath": "/home/sergio/.nuget/packages/",
+        "outputPath": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sergio/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/IbpvFrontend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/IbpvFrontend.csproj",
+        "projectName": "IbpvFrontend",
+        "projectPath": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/IbpvFrontend.csproj",
+        "packagesPath": "/home/sergio/.nuget/packages/",
+        "outputPath": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvFrontend/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sergio/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/IbpvDtos.csproj": {
+                "projectPath": "/home/sergio/Desktop/New Folder/IbpvSolution/IbpvDtos/IbpvDtos.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.307.26, )"
+            },
+            "Blazored.FluentValidation": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Blazorise.Bootstrap": {
+              "target": "Package",
+              "version": "[1.5.2, )"
+            },
+            "Blazorise.Icons.FontAwesome": {
+              "target": "Package",
+              "version": "[1.5.2, )"
+            },
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.68.0.3428, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.FluentUI.AspNetCore.Components": {
+              "target": "Package",
+              "version": "[4.9.1, )"
+            },
+            "Microsoft.FluentUI.AspNetCore.Components.Emoji": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "Microsoft.FluentUI.AspNetCore.Components.Icons": {
+              "target": "Package",
+              "version": "[4.9.1, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2024.7.1, )"
+            },
+            "Sve.Blazor.InfiniteScroll": {
+              "target": "Package",
+              "version": "[1.0.0-alpha, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
